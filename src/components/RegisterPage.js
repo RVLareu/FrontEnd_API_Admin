@@ -71,11 +71,11 @@ const RegisterPage = () => {
             setMatchPwd('');
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrMsg('No hay respuesta del servidor');
             } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
+                setErrMsg('El nombre de usuario no esta disponibles');
             } else {
-                setErrMsg('Registration Failed')
+                setErrMsg('el registro fallo')
             }
             errRef.current.focus();
         }

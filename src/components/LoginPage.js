@@ -48,13 +48,13 @@ const LoginPage = () => {
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrMsg('El servidor no responde');
             } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
+                setErrMsg('Contraseña o usuario incorrecto');
             } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
+                setErrMsg('No tiene autorización');
             } else {
-                setErrMsg('Login Failed');
+                setErrMsg('El ingreso ha fallado');
             }
             errRef.current.focus();
         }
