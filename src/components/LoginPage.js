@@ -34,17 +34,15 @@ const LoginPage = () => {
 
         try {
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ 'email': user, 'password': pwd }),
                 {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
+                    headers: { 'Content-Type': 'application/json' }
                 }
             );
             console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            //const accessToken = response?.data?.accessToken;
+            //const roles = response?.data?.roles;
+            //setAuth({ user, pwd, roles, accessToken });
             setUser('');
             setPwd('');
             navigate(from, { replace: true });
