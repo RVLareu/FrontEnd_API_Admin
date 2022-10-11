@@ -1,6 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthProvider";
+import logo from "../images//sign-gedc253aab_1280.png";
 
 const Home = () => {
     const { setAuth } = useContext(AuthContext);
@@ -15,7 +16,13 @@ const Home = () => {
 
     return (
         <section>
-            <h1>Home</h1>
+            <p>Home</p>
+            <br />
+            <h1 style={{ color:'grey', height: 15 }}>#Hospedate</h1>
+            <br />
+            <h1 style={{ color:'grey', height: 15 }}>Ahora</h1>
+            <br />
+            <img style={{height: 150, width: 150, alignSelf:'center' }} src={logo} alt="Logo" />
             <br />
             <p>Estas logueado!</p>
             <br />
@@ -27,8 +34,7 @@ const Home = () => {
             <div className="flexGrow">
                 <button onClick={logout}>Sign Out</button>
             </div>
-        </section>
-    )
+        </section>)
 }
 
 export default Home
