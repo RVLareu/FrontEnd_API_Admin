@@ -5,7 +5,7 @@ import logo from "../images//sign-gedc253aab_1280.png";
 
 import axios from '../api/axios';
 // import logo from "*.png";
-const LOGIN_URL = '/login';
+const LOGIN_URL = '/user/login';
 
 const LoginPage = () => {
     const { setAuth } = useAuth();
