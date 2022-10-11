@@ -15,12 +15,12 @@ const Home = () => {
     }
 
     return (
-        <section>
+        <section style={{backgroundColor: 'grey'}}>
             <p>Home</p>
             <br />
-            <h1 style={{ color:'grey', height: 15 }}>#Hospedate</h1>
+            <h1 style={{ color:'orange', height: 15 }}>#Hospedate</h1>
             <br />
-            <h1 style={{ color:'grey', height: 15 }}>Ahora</h1>
+            <h1 style={{ color:'orange', height: 15 }}>Ahora</h1>
             <br />
             <img style={{height: 150, width: 150, alignSelf:'center' }} src={logo} alt="Logo" />
             <br />

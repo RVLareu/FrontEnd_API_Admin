@@ -6,7 +6,7 @@ const Unauthorized = () => {
     const goBack = () => navigate(-1);
 
     return (
-        <section>
+        <section style={{backgroundColor: 'grey'}}>
             <h1>No estas autorizado</h1>
             <br />
             <p>Tenes que tener acceso a esta pagina</p>
