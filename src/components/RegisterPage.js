@@ -72,7 +72,7 @@ const RegisterPage = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No hay respuesta del servidor');
-            } else if (err.response?.status === 409) {
+            } else if (err.response?.status === 400) {
                 setErrMsg('El nombre de usuario no esta disponibles');
             } else {
                 setErrMsg('el registro fallo')
