@@ -5,7 +5,7 @@ import axios from '../api/axios';
 import { Link } from "react-router-dom";
 import logo from "../images//sign-gedc253aab_1280.png";
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const USER_REGEX = /^[A-z][A-z0-9-_@].{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/users';
 
@@ -121,7 +121,7 @@ const RegisterPage = () => {
                         <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             4 a 24 caracteres.<br />
-                            Debe emezar con una letra.<br />
+                            Debe comenzar con una letra.<br />
                         </p>
 
 
