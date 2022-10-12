@@ -56,10 +56,9 @@ const RegisterPage = () => {
         }
         try {
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ 'email':user, 'password':pwd }),
                 {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
+                    headers: { 'Content-Type': 'application/json' }
                 }
             );
             // TODO: remove console.logs before deployment
