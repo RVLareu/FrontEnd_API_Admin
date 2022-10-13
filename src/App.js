@@ -13,6 +13,7 @@ import Unauthorized from './components/Unauthorized';
 import LinkPage from './components/LinkPage';
 import RequireAuth from './components/RequireAuth';
 import { Routes, Route } from 'react-router-dom';
+import CargaPropiedad from './components/CargaPropiedad';
 
 
 
@@ -38,6 +39,7 @@ function App() {
       <Route path="linkpage" element={<LinkPage />} />
       <Route path="inquilino" element={<Inquilino />} />
       <Route path="casero" element={<Casero />} />
+      <Route path="cargaPropiedad" element={<CargaPropiedad />} />
       <Route path="unauthorized" element={<Unauthorized />} />
       
       {/*

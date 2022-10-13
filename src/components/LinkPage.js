@@ -19,6 +19,7 @@ const LinkPage = () => {
             <Link to="/">Home</Link>
             <Link to="/inquilino">Pagina inquilino</Link>
             <Link to="/casero">Pagina de Caseros</Link>
+            <Link to="/cargaPropiedad">Cargar Propiedad</Link>
         </section>
     )
 }
