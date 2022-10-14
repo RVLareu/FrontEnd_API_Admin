@@ -1,10 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import logo from "../images//sign-gedc253aab_1280.png";
-
 import axios from '../api/axios';
-// import logo from "*.png";
+import Logo from '../components/Logo';
+
 const LOGIN_URL = '/user/login';
 
 const LoginPage = () => {
@@ -63,10 +62,9 @@ const LoginPage = () => {
     return (
 
         <section style={{backgroundColor: 'grey'}}>
-            <h1 style={{ color:'orange', fontSize: 20 }}>#Hospedate</h1>
-            <h1 style={{ color:'orange', fontSize: 20 }}>Ahora</h1>
-            <img style={{height: 100, width: 100, alignSelf:'center' }} src={logo} alt="Logo" />
-            <br />
+           
+            <Logo />
+            
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Ingresar</h1>
             <form onSubmit={handleSubmit}>

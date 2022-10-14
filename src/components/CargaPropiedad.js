@@ -3,7 +3,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { Link } from "react-router-dom";
-import logo from "../images//sign-gedc253aab_1280.png";
+import Logo from '../components/Logo';
 
 
 const PROPERTYHANDLER_URL = '/registerProperty/';
@@ -75,10 +75,7 @@ const CargaPropiedad = () => {
                 </section>
             ) : (
                 <section style={{ backgroundColor: 'grey' }}>
-                    <h1 style={{ color: 'orange', fontSize: 20 }}>#Hospedate</h1>
-                    <h1 style={{ color: 'orange', fontSize: 20 }}>Ahora</h1>
-                    <img style={{ height: 100, width: 100, alignSelf: 'center' }} src={logo} alt="Logo" />
-                    <br />
+                    <Logo />
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Ingrese los datos de la propiedad</h1>
                     <form onSubmit={handleSubmit}>
