@@ -2,24 +2,39 @@ import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 import Logo from '../components/Logo';
+import {Alert, Paper} from '@mui/material';
 
 const Home = () => {
-    const { setAuth } = useContext(AuthContext);
+
     const navigate = useNavigate();
+
+    let username;
+    if (!window.localStorage.getItem("username")){
+        console.log("no autorizado")
+        //navigate("/login");
+        window.location.href = "/login";
+        return;
+    } else {
+        username = window.localStorage.getItem("username")
+    }
+
+    //const { setAuth } = useContext(AuthContext);
 
     const logout = async () => {
         // if used in more components, this should be in context 
         // axios to /logout endpoint 
-        setAuth({});
+        //setAuth({});
+        window.localStorage.removeItem("username")
+
         navigate('/linkpage');
     }
 
     return (
-        <section style={{backgroundColor: 'grey'}}>
+        <Paper elevation={3} style={{backgroundColor: 'grey', padding: '40px'}} >
             <p>Home</p>
             <br />
             <Logo />
-            <p>Estas logueado!</p>
+            <p>Estas logueado como {username}</p>
             <br />
             <Link to="/inquilino">Ir a seccion inquilino</Link>
             <br />
@@ -29,7 +44,8 @@ const Home = () => {
             <div className="flexGrow">
                 <button onClick={logout}>Sign Out</button>
             </div>
-        </section>)
+        </Paper>)
+
 }
 
 export default Home

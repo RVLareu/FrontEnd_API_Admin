@@ -39,9 +39,13 @@ const LoginPage = () => {
                 }
             );
             console.log(JSON.stringify(response?.data));
-            //const accessToken = response?.data?.accessToken;
+            //const accessToken = response?.data?.accessToken;s
             //const roles = response?.data?.roles;
             //setAuth({ user, pwd, roles, accessToken });
+
+            window.localStorage.setItem("username", user)
+            //window.location.href = from;
+            
             setUser('');
             setPwd('');
             navigate(from, { replace: true });
