@@ -14,7 +14,7 @@ import { Routes, Route } from 'react-router-dom';
 import CargaPropiedad from './components/CargaPropiedad';
 import ShowsLodgings from './routes/ShowsLodgings';
 import ModifyData from './components/ModifyData';
-
+import NavBar from './components/NavBar';
 
 
 
@@ -31,6 +31,8 @@ function App() {
   const [registrationSuccessful, setRegistrationSuccessful] = useState(false)
 
   return (
+    <>
+    <NavBar/>
     <Routes>
     <Route path="/" element={<Layout />}>
       {/* public routes */}
@@ -67,6 +69,7 @@ function App() {
       <Route path="*" element={<Missing />} /> 
     </Route>
   </Routes>
+  </>
 );
    
   
