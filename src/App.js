@@ -14,6 +14,11 @@ import LinkPage from './components/LinkPage';
 import RequireAuth from './components/RequireAuth';
 import { Routes, Route } from 'react-router-dom';
 import CargaPropiedad from './components/CargaPropiedad';
+import ShowsLodgings from './components/ShowsLodgings';
+import ModifyData from './components/ModifyData';
+
+/*Despues borrar*/
+import Tarjetas from './components/Tarjetas'
 
 
 
@@ -40,7 +45,10 @@ function App() {
       <Route path="inquilino" element={<Inquilino />} />
       <Route path="casero" element={<Casero />} />
       <Route path="cargaPropiedad" element={<CargaPropiedad />} />
+      <Route path="showLodgings" element={< ShowsLodgings/>} />
+      <Route path="modifyData/:id" element={<ModifyData/>} />
       <Route path="unauthorized" element={<Unauthorized />} />
+      
       
       {/*
       <Route element={<RequireAuth allowedRoles={[ROLES.Inquilino]} />}>

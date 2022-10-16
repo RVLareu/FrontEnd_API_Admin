@@ -10,13 +10,16 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import {useParams} from 'react-router-dom'
 
-const PROPERTYHANDLER_URL = '/createProperty';
+const PROPERTYHANDLER_URL = '/updateProperty/';
 
-const CargaPropiedad = () => {
+const ModifyData = () => {
 
     const userRef = useRef();
     const errRef = useRef();
+    /*Este es el parametro id que recupero de props/*/
+    const {id} = useParams();
 
 
     /*Datos publicacion*/
@@ -249,4 +252,4 @@ const CargaPropiedad = () => {
     )
 }
 
-export default CargaPropiedad
+export default ModifyData
