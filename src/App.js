@@ -1,24 +1,20 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import RegisterPage from './components/RegisterPage';
-import LoginPage from './components/LoginPage';
-import Home from './components/Home';
+import RegisterPage from './routes/RegisterPage';
+import LoginPage from './routes/LoginPage';
+import Home from './routes/Home';
 import Layout from './components/Layout';
-import Inquilino from './components/Inquilino';
-import Casero from './components/Casero';
-import Missing from './components/Missing';
-import Unauthorized from './components/Unauthorized';
-import LinkPage from './components/LinkPage';
+import Casero from './routes/Casero';
+import Missing from './routes/Missing';
+import Unauthorized from './routes/Unauthorized';
+import LinkPage from './routes/LinkPage';
 import RequireAuth from './components/RequireAuth';
 import { Routes, Route } from 'react-router-dom';
 import CargaPropiedad from './components/CargaPropiedad';
-import ShowsLodgings from './components/ShowsLodgings';
+import ShowsLodgings from './routes/ShowsLodgings';
 import ModifyData from './components/ModifyData';
 
-/*Despues borrar*/
-import Tarjetas from './components/Tarjetas'
 
 
 
@@ -42,7 +38,6 @@ function App() {
       <Route path="register" element={<RegisterPage />} />
       <Route path="/" element={<Home />} />
       <Route path="linkpage" element={<LinkPage />} />
-      <Route path="inquilino" element={<Inquilino />} />
       <Route path="casero" element={<Casero />} />
       <Route path="cargaPropiedad" element={<CargaPropiedad />} />
       <Route path="showLodgings" element={< ShowsLodgings/>} />

@@ -14,7 +14,6 @@ const LinkPage = () => {
             <br />
             <h2>Privados</h2>
             <Link to="/">Home</Link>
-            <Link to="/inquilino">Pagina inquilino</Link>
             <Link to="/casero">Pagina de Caseros</Link>
             <Link to="/cargaPropiedad">Cargar Propiedad</Link>
             <Link to="/showLodgings">Mostrar Hospedaje</Link>

@@ -12,8 +12,6 @@ const Home = () => {
 
     let username;
     if (!window.localStorage.getItem("username")){
-        console.log("no autorizado")
-        //navigate("/login");
         window.location.href = "/login";
         return;
     } else {
@@ -38,7 +36,7 @@ const Home = () => {
             <Logo />
             <p>Estas logueado como {username}</p>
             <br />
-            <Link to="/inquilino">Ir a seccion inquilino</Link>
+            <Link to="/showLodgings">Mis Propiedades</Link>
             <br />
             <Link to="/admin">Ir a seccion casero </Link>
             <br />

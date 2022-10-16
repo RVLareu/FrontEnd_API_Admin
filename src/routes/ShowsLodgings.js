@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import data from '../data/dataProperties';
-import Card from "./Card"
-import Tarjetas from "./Tarjetas"
+import Card from "../components/Card"
+import Tarjetas from "../components/Tarjetas"
 
 
 
