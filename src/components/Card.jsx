@@ -66,7 +66,7 @@ export default function Cards(props) {
             </Typography>
           </CardContent>
           <CardActions sx={{justifyContent:'center'}}>
-            <Button variant="contained" color="success" href={"/modifyData/" + props.id}>Modificar</Button>
+            <Button variant="contained" color="success" href={"/updateData/" + props.id}>Modificar</Button>
           </CardActions>
         </React.Fragment>
       </Card>

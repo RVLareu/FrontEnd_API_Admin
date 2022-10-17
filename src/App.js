@@ -13,7 +13,7 @@ import RequireAuth from './components/RequireAuth';
 import { Routes, Route } from 'react-router-dom';
 import CargaPropiedad from './components/CargaPropiedad';
 import ShowsLodgings from './routes/ShowsLodgings';
-import ModifyData from './components/ModifyData';
+import UpdateData from './components/UpdateData';
 import NavBar from './components/NavBar';
 
 
@@ -43,7 +43,7 @@ function App() {
       <Route path="casero" element={<Casero />} />
       <Route path="cargaPropiedad" element={<CargaPropiedad />} />
       <Route path="showLodgings" element={< ShowsLodgings/>} />
-      <Route path="modifyData/:id" element={<ModifyData/>} />
+      <Route path="updateData/:id" element={<UpdateData/>} />
       <Route path="unauthorized" element={<Unauthorized />} />
       
       

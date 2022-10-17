@@ -51,22 +51,26 @@ const CargaPropiedad = () => {
 
 
         try {
+            
 
             setEmail(username)
-            const response = await axios.post(PROPERTYHANDLER_URL,
+            console.log(username)
+            const response = await axios.post('/createProperty',
                 JSON.stringify({
                     'direction': direccion,'province': provincia,  'location': localidad,
-                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'email_user': email_user
+                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'email_user': username
                 }),
                 {
                     headers: { 'Content-Type': 'application/json' }
-                }
+                },
+
+               
             );
-            // TODO: remove console.logs before deployment
-            // console.log(JSON.stringify(response?.data));
+           
+            //console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response))
-
-
+            console.log(errMsg)    
+              
 
             //clear state and controlled inputs
 
@@ -79,6 +83,8 @@ const CargaPropiedad = () => {
                 setErrMsg('el registro fallo')
             }
             errRef.current.focus();
+
+            setErrMsg(null)  
         }
     }
 
