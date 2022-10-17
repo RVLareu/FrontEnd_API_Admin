@@ -14,7 +14,7 @@ import {useParams} from 'react-router-dom'
 
 const PROPERTYHANDLER_URL = '/updateProperty/';
 
-const ModifyData = () => {
+const UpdateData = () => {
 
     const userRef = useRef();
     const errRef = useRef();
@@ -252,4 +252,4 @@ const ModifyData = () => {
     )
 }
 
-export default ModifyData
+export default UpdateData

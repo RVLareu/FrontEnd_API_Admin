@@ -1,23 +1,19 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import data from '../data/dataProperties';
+import axios from '../api/axios';
 import Card from "../components/Card"
 import { Box } from '@mui/material';
 
+const ShowsLodgings = async () => {
 
 
-const ShowsLodgings = () => {
-      return (
-        <>
-          <Box sx={{display:'flex',flexWrap: 'wrap' }}>
-              {data.map(item => {
-                return (
-                    <Card key={item.id} {...item}/>
-                )}
-              )}   
-          </Box>
-        </>
-      )
+
+  const params = new URLSearchParams([['email_user', 'gmovia@fi.uba.ar']]);
+
+  const data = await axios.post('/fetchAllUserProperties/', {},{ params });
+  console.log(data.data)
+
+
 }
 
 export default ShowsLodgings
