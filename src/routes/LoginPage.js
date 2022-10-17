@@ -38,8 +38,8 @@ const LoginPage = () => {
                     headers: { 'Content-Type': 'application/json' }
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            //const accessToken = response?.data?.accessToken;s
+            console.log(JSON.stringify(response));
+            //const accessToken = response?.data?.accessToken;
             //const roles = response?.data?.roles;
             //setAuth({ user, pwd, roles, accessToken });
 
@@ -52,9 +52,9 @@ const LoginPage = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('El servidor no responde');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Contraseña o usuario incorrecto');
             } else if (err.response?.status === 401) {
+                setErrMsg('Contraseña o usuario incorrecto');
+            } else if (err.response?.status === 402) {
                 setErrMsg('No tiene autorización');
             } else {
                 setErrMsg('El ingreso ha fallado');
