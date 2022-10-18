@@ -8,20 +8,16 @@ const ShowsLodgings = () => {
 
   const [lodgings, setLodgings] = useState([]);
 
- 
-
-
-  useEffect(() => {
-    let username = window.localStorage.getItem("username")
+  let username = window.localStorage.getItem("username")
     
-    
+  
+  const loadLodgings = () => {
     if (!username){
-        console.log("no autorizado")
-        //navigate("/login");
-        window.location.href = "/login";
-        return;
+      console.log("no autorizado")
+      //navigate("/login");
+      window.location.href = "/login";
+      return;
     } 
-
     const params = new URLSearchParams([['email_user', username]]);
     
     axios.post('/fetchAllUserProperties/', {},{ params })
@@ -31,6 +27,12 @@ const ShowsLodgings = () => {
     .catch((error) => {
       console.log(error);
     });
+  }
+
+
+
+  useEffect(() => {
+    loadLodgings();
     }, []);
 
 
@@ -39,7 +41,7 @@ const ShowsLodgings = () => {
     <Box sx={{display:'flex',flexWrap: 'wrap' }}>
         {lodgings.map(item => {
           return (
-              <Card key={item.id} {...item}/>
+              <Card key={item.id} {...item} username={username} updateLodgings={loadLodgings} />
           )}
         )}   
     </Box>
