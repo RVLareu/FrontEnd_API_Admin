@@ -219,8 +219,6 @@ const UpdateData = () => {
                         <br />
 
 
-
-
                         <Box sx={{ minWidth: 120 }}>
                             <FormControl fullWidth>
                                 <InputLabel id="demo-simple-select-label">Personas</InputLabel>
@@ -256,7 +254,9 @@ const UpdateData = () => {
 
                         />
 
+                        <br />
 
+                        <Link to="/cargaFotos">Cargar Fotos</Link>
 
                         <button >Actualizar Datos</button>
                     </form>
