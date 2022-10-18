@@ -10,40 +10,48 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 const PROPERTYHANDLER_URL = '/updateProperty/';
 
 const UpdateData = () => {
 
+
+    let props = window.localStorage.getItem("update_props")
+    let parse = JSON.parse(props)
+    console.log(props)
+
     const userRef = useRef();
     const errRef = useRef();
     /*Este es el parametro id que recupero de props/*/
-    const {id} = useParams();
+
+
+    /*Recomporner Json*/
+
 
 
     /*Datos publicacion*/
-    const [direccion, setDireccion] = useState('');
-    const [localidad, setLocalidad] = useState('');
-    const [provincia, setProvincia] = useState('');
-    const [pais, setPais] = useState('');
-    const [habitaciones, setHabitaciones] = useState('');
-    const [banios, setBanios] = useState('');
-    const [personas, setPersonas] = useState('');
-    const [descripcion, setDescripcion] = useState('');
-    const [email_user, setEmail] = useState('');
+    const [id_property, setPropertyID] = useState(parse.id);
+    const [direccion, setDireccion] = useState(parse.direction);
+    const [localidad, setLocalidad] = useState(parse.location);
+    const [provincia, setProvincia] = useState(parse.province);
+    const [pais, setPais] = useState(parse.country);
+    const [habitaciones, setHabitaciones] = useState(parse.rooms);
+    const [banios, setBanios] = useState(parse.toilets);
+    const [personas, setPersonas] = useState(parse.people);
+    const [descripcion, setDescripcion] = useState(parse.description);
+    const [email_user, setEmail] = useState(parse.email_user);
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-
-
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack floors
+        const params = new URLSearchParams([['property_id', id_property]]);
 
         let username;
-        if (!window.localStorage.getItem("username")){
+        if (!window.localStorage.getItem("username")) {
             console.log("no autorizado")
             //navigate("/login");
             window.location.href = "/login";
@@ -54,24 +62,24 @@ const UpdateData = () => {
 
 
         try {
+            const json = {
+                'direction': direccion, 'province': provincia, 'location': localidad,
+                'country': pais, 'toilets': banios, 'rooms': habitaciones, 'people': personas, 'description': descripcion, 'email_user': email_user
+            }
 
             setEmail(username)
-            const response = await axios.post(PROPERTYHANDLER_URL,
-                JSON.stringify({
-                    'direction': direccion,'province': provincia,  'location': localidad,
-                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'email_user': email_user
-                }),
+            axios.post('/updateProperty', json, { params },
                 {
                     headers: { 'Content-Type': 'application/json' }
                 }
-            );
-            // TODO: remove console.logs before deployment
-            // console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response))
 
 
+            ).then();
+            setErrMsg(null) 
+           
 
-            //clear state and controlled inputs
+                
+            
 
         } catch (err) {
             if (!err?.response) {
@@ -85,16 +93,19 @@ const UpdateData = () => {
         }
     }
 
+
+
     return (
         <>
             {success ? (
                 <section style={{ backgroundColor: 'grey' }}>
-                    <h1>Propiedad cargada con exito!</h1>
+                    <h1>Propiedad actualizada con exito!</h1>
                     <p>
                         <a href="/">Ir a la pagina principalr</a>
                     </p>
                 </section>
             ) : (
+
                 <section style={{ backgroundColor: 'grey' }}>
                     <h1 style={{ color: 'orange', fontSize: 20 }}>#Hospedate</h1>
                     <h1 style={{ color: 'orange', fontSize: 20 }}>Ahora</h1>
@@ -157,7 +168,7 @@ const UpdateData = () => {
                             required
 
                         />
-                        <br/>
+                        <br />
 
                         <Box sx={{ minWidth: 120 }}>
                             <FormControl fullWidth>
@@ -169,18 +180,19 @@ const UpdateData = () => {
                                     label="Baños"
                                     onChange={(e) => setBanios(e.target.value)}
                                 >
+                                    <MenuItem value={0}>0</MenuItem>
                                     <MenuItem value={1}>1</MenuItem>
                                     <MenuItem value={2}>2</MenuItem>
                                     <MenuItem value={3}>3</MenuItem>
                                     <MenuItem value={4}>4</MenuItem>
-                                    <MenuItem value={5}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
                                     <MenuItem value={6}>6</MenuItem>
                                     <MenuItem value={7}>7</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>
 
-                        <br/>
+                        <br />
 
                         <Box sx={{ minWidth: 120 }}>
                             <FormControl fullWidth>
@@ -192,18 +204,19 @@ const UpdateData = () => {
                                     label="Habitaciones"
                                     onChange={(e) => setHabitaciones(e.target.value)}
                                 >
+                                    <MenuItem value={0}>0</MenuItem>
                                     <MenuItem value={1}>1</MenuItem>
                                     <MenuItem value={2}>2</MenuItem>
                                     <MenuItem value={3}>3</MenuItem>
                                     <MenuItem value={4}>4</MenuItem>
-                                    <MenuItem value={5}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
                                     <MenuItem value={6}>6</MenuItem>
                                     <MenuItem value={7}>7</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>
 
-                        <br/>
+                        <br />
 
 
 
@@ -218,11 +231,12 @@ const UpdateData = () => {
                                     label="Habitaciones"
                                     onChange={(e) => setPersonas(e.target.value)}
                                 >
+                                    <MenuItem value={0}>0</MenuItem>
                                     <MenuItem value={1}>1</MenuItem>
                                     <MenuItem value={2}>2</MenuItem>
                                     <MenuItem value={3}>3</MenuItem>
                                     <MenuItem value={4}>4</MenuItem>
-                                    <MenuItem value={5}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
                                     <MenuItem value={6}>6</MenuItem>
                                     <MenuItem value={7}>7</MenuItem>
                                 </Select>
@@ -244,7 +258,7 @@ const UpdateData = () => {
 
 
 
-                        <button >Registrar Propiedad</button>
+                        <button >Actualizar Datos</button>
                     </form>
                 </section>
             )}

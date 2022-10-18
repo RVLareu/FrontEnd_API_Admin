@@ -8,9 +8,21 @@ const ShowsLodgings = () => {
 
   const [lodgings, setLodgings] = useState([]);
 
+ 
+
+
   useEffect(() => {
+    let username = window.localStorage.getItem("username")
     
-    const params = new URLSearchParams([['email_user', 'gmovia@fi.uba.ar']]);
+    
+    if (!username){
+        console.log("no autorizado")
+        //navigate("/login");
+        window.location.href = "/login";
+        return;
+    } 
+
+    const params = new URLSearchParams([['email_user', username]]);
     
     axios.post('/fetchAllUserProperties/', {},{ params })
     .then((response) => {

@@ -66,10 +66,11 @@ const CargaPropiedad = () => {
 
                
             );
+            setSuccess(true);
            
             //console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response))
-            console.log(errMsg)    
+                
               
 
             //clear state and controlled inputs
@@ -94,7 +95,7 @@ const CargaPropiedad = () => {
                 <section style={{ backgroundColor: 'grey' }}>
                     <h1>Propiedad cargada con exito!</h1>
                     <p>
-                        <a href="/">Ir a la pagina principalr</a>
+                        <a href="/">Ir a la pagina principal!</a>
                     </p>
                 </section>
             ) : (
@@ -176,7 +177,7 @@ const CargaPropiedad = () => {
                                     <MenuItem value={2}>2</MenuItem>
                                     <MenuItem value={3}>3</MenuItem>
                                     <MenuItem value={4}>4</MenuItem>
-                                    <MenuItem value={5}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
                                     <MenuItem value={6}>6</MenuItem>
                                     <MenuItem value={7}>7</MenuItem>
                                 </Select>
@@ -199,7 +200,7 @@ const CargaPropiedad = () => {
                                     <MenuItem value={2}>2</MenuItem>
                                     <MenuItem value={3}>3</MenuItem>
                                     <MenuItem value={4}>4</MenuItem>
-                                    <MenuItem value={5}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
                                     <MenuItem value={6}>6</MenuItem>
                                     <MenuItem value={7}>7</MenuItem>
                                 </Select>
@@ -225,7 +226,7 @@ const CargaPropiedad = () => {
                                     <MenuItem value={2}>2</MenuItem>
                                     <MenuItem value={3}>3</MenuItem>
                                     <MenuItem value={4}>4</MenuItem>
-                                    <MenuItem value={5}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
                                     <MenuItem value={6}>6</MenuItem>
                                     <MenuItem value={7}>7</MenuItem>
                                 </Select>

@@ -43,7 +43,7 @@ function App() {
       <Route path="casero" element={<Casero />} />
       <Route path="cargaPropiedad" element={<CargaPropiedad />} />
       <Route path="showLodgings" element={< ShowsLodgings/>} />
-      <Route path="updateData/:id" element={<UpdateData/>} />
+      <Route path="updateData/" element={<UpdateData/>} />
       <Route path="unauthorized" element={<Unauthorized />} />
       
       

@@ -5,6 +5,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import UpdateData from './UpdateData';
+import axios from '../api/axios';
 
 const DELETE_PROPERTY_URL = '/deleteProperty/';
 
@@ -17,36 +19,37 @@ const bull = (
   </Box>
 );
 
+const update = async (props) => {
+
+  
+  window.localStorage.setItem("update_props", JSON.stringify (props))
+  
+  window.location.href="/updateData/"
+
+
+  
+
+ 
+}
+
 const deleteProperty = async (property_id) => {
 
   console.log(property_id);
-
-  // if button enabled with JS hack
-
-  /* try {
-       const response = await axios.post(DELETE_PROPERTY_URL,
-           JSON.stringify({ '':a }),
-           {
-               headers: { 'Content-Type': 'application/json' }
-           }
-       );
+  const params = new URLSearchParams([['property_id', {property_id}]]);
+  axios.post('/deleteProperty/', {},{ params })
+    .then((response) => {
      
-   } catch (err) {
-       if (!err?.response) {
-           setErrMsg('No hay respuesta del servidor');
-       } else if (err.response?.status === 400) {
-           setErrMsg('El nombre de usuario no esta disponibles');
-       } else {
-           setErrMsg('el registro fallo')
-       }
-       errRef.current.focus();
-   }*/
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
 }
 
 
 
 export default function Cards(props) {
-  return (
+    return (
 
       <Card variant="outlined" sx={{m:1}}>
         <Button  sx={{color:'red'}} onClick={() => { deleteProperty(props.id) }}> X </Button>
@@ -66,7 +69,8 @@ export default function Cards(props) {
             </Typography>
           </CardContent>
           <CardActions sx={{justifyContent:'center'}}>
-            <Button variant="contained" color="success" href={"/updateData/" + props.id}>Modificar</Button>
+            <Button variant="contained" onClick={()=>{update(props)}} color="success">Modificar</Button>
+            <Button variant="contained" onClick={()=>{deleteProperty(props.id)}} color="success">Eliminar</Button>
           </CardActions>
         </React.Fragment>
       </Card>
