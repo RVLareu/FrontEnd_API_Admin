@@ -9,8 +9,10 @@ const ShowsLodgings = () => {
   const [lodgings, setLodgings] = useState([]);
 
   useEffect(() => {
-    
-    const params = new URLSearchParams([['email_user', 'gmovia@fi.uba.ar']]);
+
+    const mail = window.localStorage.getItem("username")
+
+    const params = new URLSearchParams([['email_user', mail]]);
     
     axios.post('/fetchAllUserProperties/', {},{ params })
     .then((response) => {
