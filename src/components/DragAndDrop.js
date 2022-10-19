@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import ImageUploading, { ImageListType } from "react-images-uploading";
-import {BoxDragAndDrop} from './BoxDragAndDrop';
-import {ImageSelected} from './ImageSelected';
+import React from 'react';
+import ImageUploading from "react-images-uploading";
+import { useUploadImage } from '../hooks/useUploadImage';
+
+import { ImageSelected } from './ImageSelected';
+import { BoxDragAndDrop } from './BoxDragAndDrop';
+import { Message } from './Message';
 
 export const DragAndDrop = () => {
-    const [images, setImages] = useState<ImageListType>([]);
-    const [urlImage, setUrlImage] = useState('')
-    const [loading, setLoading] = useState(false);
 
-    const handleChange = (imageList: ImageListType) => setImages(imageList);
-
-    const onUpload = () => {}
+    const { urlImage, handleChange, images, ...rest } = useUploadImage();
 
     return (
         <>
+            <Message urlImage={urlImage} />
             <ImageUploading multiple={false} value={images} onChange={handleChange} maxNumber={1}>
                 {({
                       imageList,
@@ -26,7 +25,7 @@ export const DragAndDrop = () => {
                     <>
                         {
                             imageList[0]
-                                ?  <ImageSelected  />
+                                ? <ImageSelected  {...{ onImageRemove, onImageUpdate, ...rest }} img={imageList[0].dataURL} />
                                 : <BoxDragAndDrop {...{ onImageUpload, dragProps, isDragging }} />
                         }
                     </>

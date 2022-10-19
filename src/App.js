@@ -15,7 +15,7 @@ import CargaPropiedad from './components/CargaPropiedad';
 import ShowsLodgings from './routes/ShowsLodgings';
 import UpdateData from './components/UpdateData';
 import NavBar from './components/NavBar';
-import FileLoader from './components/FileLoader';
+import {FileLoader} from './components/FileLoader';
 
 
 const ROLES = {
