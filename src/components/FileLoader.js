@@ -19,8 +19,8 @@ import {useUploadImage} from "../hooks/useUploadImage";
 
 const FILELOADER_URL = '/loadFiles';
 
-const cloud_name = 'example-cloud-name';
-const preset = 'example-preset';
+const cloud_name = 'dwx9rqfjh';
+const preset = 'z87owhgv';
 const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`
 
 export const FileLoader = () => {

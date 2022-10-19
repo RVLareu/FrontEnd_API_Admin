@@ -16,6 +16,12 @@ import ShowsLodgings from './routes/ShowsLodgings';
 import UpdateData from './components/UpdateData';
 import NavBar from './components/NavBar';
 import {FileLoader} from './components/FileLoader';
+import BoxDragAndDrop from './components/BoxDragAndDrop';
+import {DragAndDrop} from './components/DragAndDrop';
+import ImageSelected from './components/ImageSelected';
+import Message from './components/Message';
+import useUploadImage from './hooks/useUploadImage';
+import FileUpload from './utils/FileUpload';
 
 
 const ROLES = {
@@ -46,7 +52,7 @@ function App() {
       <Route path="updateData/" element={<UpdateData/>} />
       <Route path="unauthorized" element={<Unauthorized />} />
       <Route path="fileLoader" element={<FileLoader />} />
-      
+      <Route path="dragAndDrop" element={<DragAndDrop />} />
       
       {/*
       <Route element={<RequireAuth allowedRoles={[ROLES.Inquilino]} />}>

@@ -243,8 +243,9 @@ const CargaPropiedad = () => {
                             onChange={(e) => setDescripcion(e.target.value)}
                             value={descripcion}
                             required
-
                         />
+
+                        <br/>
 
                         <Link to="/fileLoader">Cargar Fotos</Link>
 
