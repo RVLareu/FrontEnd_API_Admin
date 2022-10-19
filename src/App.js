@@ -15,7 +15,7 @@ import CargaPropiedad from './components/CargaPropiedad';
 import ShowsLodgings from './routes/ShowsLodgings';
 import UpdateData from './components/UpdateData';
 import NavBar from './components/NavBar';
-
+import FileLoader from './components/FileLoader';
 
 
 const ROLES = {
@@ -45,6 +45,7 @@ function App() {
       <Route path="showLodgings" element={< ShowsLodgings/>} />
       <Route path="updateData/" element={<UpdateData/>} />
       <Route path="unauthorized" element={<Unauthorized />} />
+      <Route path="fileLoader" element={<FileLoader />} />
       
       
       {/*

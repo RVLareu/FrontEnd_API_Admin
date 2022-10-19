@@ -256,7 +256,7 @@ const UpdateData = () => {
 
                         <br />
 
-                        <Link to="/cargaFotos">Cargar Fotos</Link>
+                        <Link to="/fileLoader">Cargar Fotos</Link>
 
                         <button >Actualizar Datos</button>
                     </form>

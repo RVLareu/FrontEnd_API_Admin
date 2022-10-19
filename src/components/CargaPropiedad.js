@@ -246,7 +246,7 @@ const CargaPropiedad = () => {
 
                         />
 
-                        <Link to="/cargaFotos">Cargar Fotos</Link>
+                        <Link to="/fileLoader">Cargar Fotos</Link>
 
                         <button >Registrar Propiedad</button>
                     </form>
