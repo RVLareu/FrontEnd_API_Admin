@@ -24,7 +24,7 @@ export const DragAndDrop = () => {
                   }) => <>
                       {
                           imageList[0]
-                              ? <ImageSelected  {...{ onImageRemove, onImageUpdate, ...rest }} img={imageList[0].dataURL} />
+                              ? <ImageSelected  {...{ onImageRemove, onImageUpdate, ...rest }} img={!imageList[0].dataURL} />
                               : <BoxDragAndDrop dragProps={dragProps} isDragging={isDragging} onImageUpload={onImageUpload}/>
                       }
                   </>}

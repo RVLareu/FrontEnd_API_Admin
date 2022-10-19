@@ -12,7 +12,7 @@ export const useUploadImage = () => {
 
     const onUpload = async () => {
         setLoading(true);
-        const url = await FileUpload(images[0].file);
+        const url = await FileUpload(!images[0].file);
         setLoading(false);
 
         if (url) setUrlImage(url);

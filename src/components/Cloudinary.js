@@ -18,7 +18,7 @@ function App() {
     const CLOUD_NAME = "CLOUD_NAME"
     const UPLOAD_PRESET = "UPLOAD_PRESET"
 
-    const upload = async () => {
+    const upload2 = async () => {
         const data1 = new FormData();
         data1.append("file", file);
         data1.append("upload_preset", CLOUD_NAME);
@@ -31,13 +31,13 @@ function App() {
     return (
         <div className="App">
             <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
-            <button onClick={upload}>Upload</button>
+            <button onClick={upload2}>Upload</button>
         </div>
     );
 }
 
 app.post("/upload", uploader.single("file"), async (req, res) => {
-    const upload = await cloudinary.v2.uploader.upload(req.file.path);
+    const upload2 = await cloudinary.v2.uploader.upload(req.file.path);
     return res.json({
         success: true,
         file: upload.secure_url,
