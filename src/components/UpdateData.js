@@ -50,7 +50,7 @@ const UpdateData = () => {
         e.preventDefault();
         // if button enabled with JS hack floors
         const params = new URLSearchParams([['property_id', id_property]]);
-        foto = window.localStorage.getItem("image");
+        foto = window.localStorage.getItem("url");
 
         let username;
         if (!window.localStorage.getItem("username")) {

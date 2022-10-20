@@ -39,44 +39,46 @@ export const FileLoader = () => {
 
         fetch(cloudinaryUrl,
             {method: "POST",
-                 body: data})
+                body: data})
             .then(resp => resp.json())
             .then(data => {
                 setUrl(data.url)})
-            .then(window.localStorage.setItem("image", url))
             .then(setSuccess(true))
+          
             //const data2 = await response.json()
             .catch(err => console.log(err))
-    };
+       
+    }
 
     return (
         <>
             {success ? (
-                <section style={{backgroundColor: 'grey'}}>
-                    <h1>Foto cargada con Exito!</h1>
-                    <img src={url} alt="Preview"/>
-                    <button onClick={() => navigate(-1)}> Volver </button>
+                    <section style={{backgroundColor: 'grey'}}>
+                        <h1>Foto cargada con Exito!</h1>
+                        <img src={url} alt="Preview"/>
+                        <button onClick={() => {navigate(-1);
+                          window.localStorage.setItem("url",  JSON.stringify (url))}}> Volver </button>
 
-                </section>)
+                    </section>)
 
-             : (<section style={{backgroundColor: 'grey'}}>
-              <Logo/>
+                : (<section style={{backgroundColor: 'grey'}}>
+                    <Logo/>
 
-              <h1>
-                  <span>Cargar fotos</span><br/>
-              </h1>
+                    <h1>
+                        <span>Cargar fotos</span><br/>
+                    </h1>
 
-              <div className="App">
-                  <input type="file" onChange={(e) => setFile(e.target.files[0])}/>
-                  {file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)}/> : null}
-                  <button onClick={upload}>Upload</button>
-              </div>
+                    <div className="App">
+                        <input type="file" onChange={(e) => setFile(e.target.files[0])}/>
+                        {file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)}/> : null}
+                        <button onClick={upload}>Upload</button>
+                    </div>
 
-              <url/>
+                    <url/>
 
-              <image src={url}/>
+                    <image src={url}/>
 
-          </section>)}
+                </section>)}
         </>
     );
 }

@@ -52,7 +52,7 @@ const CargaPropiedad = () => {
 
             setEmail(username)
             console.log(username)
-            foto = window.localStorage.getItem("image")
+            foto = window.localStorage.getItem("url")
             const response = await axios.post('/createProperty',
                 JSON.stringify({
                     'direction': direccion,'province': provincia,  'location': localidad,
