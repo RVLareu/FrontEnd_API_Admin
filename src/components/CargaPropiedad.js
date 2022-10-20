@@ -30,7 +30,7 @@ const CargaPropiedad = () => {
     const [email_user, setEmail] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-    const [foto, setFoto] = useState('');
+    let [foto, setFoto] = useState('');
 
 
     const handleSubmit = async (e) => {
@@ -52,10 +52,11 @@ const CargaPropiedad = () => {
 
             setEmail(username)
             console.log(username)
+            foto = window.localStorage.getItem("image")
             const response = await axios.post('/createProperty',
                 JSON.stringify({
                     'direction': direccion,'province': provincia,  'location': localidad,
-                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'email_user': username
+                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'link': foto, 'email_user': username
                 }),
                 {
                     headers: { 'Content-Type': 'application/json' }
@@ -63,7 +64,6 @@ const CargaPropiedad = () => {
 
             );
             setSuccess(true);
-            setFoto(window.localStorage.getItem("image"))
            
             //console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response))

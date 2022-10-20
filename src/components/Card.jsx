@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import UpdateData from './UpdateData';
 import axios from '../api/axios';
 import swal from 'sweetalert2';
+import {Image} from "@mui/icons-material";
 
 
 const DELETE_PROPERTY_URL = '/deleteProperty/';
@@ -66,9 +67,9 @@ export default function Cards(props) {
     return (
 
       <Card variant="outlined" sx={{m:1}}>
-        <Button  sx={{color:'red'}} onClick={() => { deleteProperty(props.id, username, props.updateLodgings) }}> X </Button>
         <React.Fragment>
           <CardContent>
+            <Image src={props.link} />
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {props.country}
             </Typography>

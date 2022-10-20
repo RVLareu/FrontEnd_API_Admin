@@ -43,12 +43,14 @@ const UpdateData = () => {
     const [email_user, setEmail] = useState(parse.email_user);
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+    let [foto, setFoto] = useState('');
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack floors
         const params = new URLSearchParams([['property_id', id_property]]);
+        foto = window.localStorage.getItem("image");
 
         let username;
         if (!window.localStorage.getItem("username")) {
@@ -59,7 +61,6 @@ const UpdateData = () => {
         } else {
             username = window.localStorage.getItem("username")
         }
-
 
         try {
             const json = {
@@ -75,11 +76,9 @@ const UpdateData = () => {
 
 
             ).then();
-            setErrMsg(null) 
-           
+            setErrMsg(null)
+            setSuccess(true);
 
-                
-            
 
         } catch (err) {
             if (!err?.response) {
@@ -90,6 +89,8 @@ const UpdateData = () => {
                 setErrMsg('el registro fallo')
             }
             errRef.current.focus();
+
+            setErrMsg(null)
         }
     }
 
@@ -115,6 +116,8 @@ const UpdateData = () => {
                     <h1>Ingrese los datos de la propiedad</h1>
                     <form onSubmit={handleSubmit}>
 
+                        <br />
+                        <Link to="/fileLoader">Cargar Fotos</Link>
 
                         <label htmlFor="direccion">
                             Direccion:
@@ -254,9 +257,7 @@ const UpdateData = () => {
 
                         />
 
-                        <br />
-
-                        <Link to="/fileLoader">Cargar Fotos</Link>
+                        <br/>
 
                         <button >Actualizar Datos</button>
                     </form>
