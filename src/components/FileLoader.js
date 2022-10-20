@@ -25,9 +25,6 @@ export const FileLoader = () => {
     const UPLOAD_PRESET = 'z87owhgv';
     const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
 
-    //const CLOUD_NAME = "CLOUD_NAME"
-    //const UPLOAD_PRESET = "UPLOAD_PRESET"
-
     const [file, setFile] = useState("");
     const [url, setUrl] = useState("");
 
@@ -35,15 +32,18 @@ export const FileLoader = () => {
     const navigate = useNavigate();
 
     const upload = async () => {
-        const data1 = new FormData();
-        data1.append("file", file);
-        data1.append("upload_preset", CLOUD_NAME);
+        const data = new FormData();
+        data.append('file', file);
+        data.append('upload_preset', UPLOAD_PRESET);
+        data.append('cloud_name', CLOUD_NAME);
 
-        fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-            {method: "POST", body: data1})
+        fetch(cloudinaryUrl,
+            {method: "POST",
+                 body: data})
             .then(resp => resp.json())
-            .then(data1 => {
-                setUrl(data1.url)})
+            .then(data => {
+                setUrl(data.url)})
+            .then(window.localStorage.setItem("image", url))
             .then(setSuccess(true))
             //const data2 = await response.json()
             .catch(err => console.log(err))
@@ -54,6 +54,7 @@ export const FileLoader = () => {
             {success ? (
                 <section style={{backgroundColor: 'grey'}}>
                     <h1>Foto cargada con Exito!</h1>
+                    <img src={url} alt="Preview"/>
                     <button onClick={() => navigate(-1)}> Volver </button>
 
                 </section>)

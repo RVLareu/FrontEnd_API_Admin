@@ -18,7 +18,6 @@ const CargaPropiedad = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-
     /*Datos publicacion*/
     const [direccion, setDireccion] = useState('');
     const [localidad, setLocalidad] = useState('');
@@ -32,8 +31,6 @@ const CargaPropiedad = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
     const [foto, setFoto] = useState('');
-
-
 
 
     const handleSubmit = async (e) => {
@@ -52,7 +49,6 @@ const CargaPropiedad = () => {
 
 
         try {
-            
 
             setEmail(username)
             console.log(username)
@@ -65,9 +61,9 @@ const CargaPropiedad = () => {
                     headers: { 'Content-Type': 'application/json' }
                 },
 
-               
             );
             setSuccess(true);
+            setFoto(window.localStorage.getItem("image"))
            
             //console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response))
