@@ -21,8 +21,6 @@ const FILELOADER_URL = '/loadFiles';
 
 export const FileLoader = () => {
 
-    const [file, setFile] = useState(null);
-
     const CLOUD_NAME = 'dwx9rqfjh';
     const UPLOAD_PRESET = 'z87owhgv';
     const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
@@ -30,42 +28,40 @@ export const FileLoader = () => {
     //const CLOUD_NAME = "CLOUD_NAME"
     //const UPLOAD_PRESET = "UPLOAD_PRESET"
 
+    const [file, setFile] = useState("");
+    const [url, setUrl] = useState("");
+
     const upload = async () => {
         const data1 = new FormData();
         data1.append("file", file);
         data1.append("upload_preset", CLOUD_NAME);
-        const response = await fetch(`https://api.cloudinary.com/v1_1/${UPLOAD_PRESET}/upload`,
-            { method: "POST", body: data1 })
-        const data2 = await response.json()
-        console.log(data2) // reemplazar con un mensaje de éxito o la acción deseada
+
+        fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+            {method: "POST", body: data1})
+            .then(resp => resp.json())
+            .then(data1 => {
+                setUrl(data1.url)
+            })
+            //const data2 = await response.json()
+            .catch(err => console.log(err))
     };
 
     return (
-        (<section style={{ backgroundColor: 'grey' }}>
-            <Logo />
+        (<section style={{backgroundColor: 'grey'}}>
+            <Logo/>
 
             <h1>
-                <span>Cargar fotos</span><br />
+                <span>Cargar fotos</span><br/>
             </h1>
 
-        <div className="App">
-            <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
-            { file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)} /> : null }
-            <button onClick={upload}>Upload</button>
-        </div>
+            <div className="App">
+                <input type="file" onChange={(e) => setFile(e.target.files[0])}/>
+                {file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)}/> : null}
+                <button onClick={upload}>Upload</button>
+            </div>
+
+            <image src={url}/>
 
         </section>)
     );
-
-
-/*
-    return (<section style={{ backgroundColor: 'grey' }}>
-        <Logo />
-
-        <h1>
-            <span>Cargar fotos</span><br />
-        </h1>
-
-    </section>)
-*/
 }

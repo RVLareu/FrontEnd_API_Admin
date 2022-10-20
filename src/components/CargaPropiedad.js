@@ -31,6 +31,7 @@ const CargaPropiedad = () => {
     const [email_user, setEmail] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+    const [foto, setFoto] = useState('');
 
 
 
