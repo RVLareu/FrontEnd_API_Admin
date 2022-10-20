@@ -109,6 +109,8 @@ const CargaPropiedad = () => {
                     <h1>Ingrese los datos de la propiedad</h1>
                     <form onSubmit={handleSubmit}>
 
+                        <br />
+                        <Link to="/fileLoader">Cargar Fotos</Link>
 
                         <label htmlFor="direccion">
                             Direccion:
@@ -247,8 +249,6 @@ const CargaPropiedad = () => {
                         />
 
                         <br/>
-
-                        <Link to="/fileLoader">Cargar Fotos</Link>
 
                         <button >Registrar Propiedad</button>
                     </form>

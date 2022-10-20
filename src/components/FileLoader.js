@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
-import { Link } from "react-router-dom";
+import { Link, Route, useNavigate, BrowserRouter, BrowserRouter as Router, Redirect, Switch} from "react-router-dom";
 import Logo from '../components/Logo';
 import {DragAndDrop} from './DragAndDrop';
 import {FileUpload} from '../utils/FileUpload';
@@ -31,6 +31,9 @@ export const FileLoader = () => {
     const [file, setFile] = useState("");
     const [url, setUrl] = useState("");
 
+    const [success, setSuccess] = useState(false);
+    const navigate = useNavigate();
+
     const upload = async () => {
         const data1 = new FormData();
         data1.append("file", file);
@@ -40,28 +43,39 @@ export const FileLoader = () => {
             {method: "POST", body: data1})
             .then(resp => resp.json())
             .then(data1 => {
-                setUrl(data1.url)
-            })
+                setUrl(data1.url)})
+            .then(setSuccess(true))
             //const data2 = await response.json()
             .catch(err => console.log(err))
     };
 
     return (
-        (<section style={{backgroundColor: 'grey'}}>
-            <Logo/>
+        <>
+            {success ? (
+                <section style={{backgroundColor: 'grey'}}>
+                    <h1>Foto cargada con Exito!</h1>
+                    <button onClick={() => navigate(-1)}> Volver </button>
 
-            <h1>
-                <span>Cargar fotos</span><br/>
-            </h1>
+                </section>)
 
-            <div className="App">
-                <input type="file" onChange={(e) => setFile(e.target.files[0])}/>
-                {file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)}/> : null}
-                <button onClick={upload}>Upload</button>
-            </div>
+             : (<section style={{backgroundColor: 'grey'}}>
+              <Logo/>
 
-            <image src={url}/>
+              <h1>
+                  <span>Cargar fotos</span><br/>
+              </h1>
 
-        </section>)
+              <div className="App">
+                  <input type="file" onChange={(e) => setFile(e.target.files[0])}/>
+                  {file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)}/> : null}
+                  <button onClick={upload}>Upload</button>
+              </div>
+
+              <url/>
+
+              <image src={url}/>
+
+          </section>)}
+        </>
     );
 }
