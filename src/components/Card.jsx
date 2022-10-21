@@ -69,7 +69,7 @@ export default function Cards(props) {
       <Card variant="outlined" sx={{m:1}}>
         <React.Fragment>
           <CardContent>
-            <Image src={props.link} />
+            <img alt="Preview" height="100" src={props.link} />
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {props.country}
             </Typography>

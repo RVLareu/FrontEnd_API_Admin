@@ -57,7 +57,7 @@ export const FileLoader = () => {
                         <h1>Foto cargada con Exito!</h1>
                         <img src={url} alt="Preview"/>
                         <button onClick={() => {navigate(-1);
-                          window.localStorage.setItem("url",  JSON.stringify (url))}}> Volver </button>
+                          window.localStorage.setItem("url",  url)}}> Volver </button>
 
                     </section>)
 
@@ -65,12 +65,12 @@ export const FileLoader = () => {
                     <Logo/>
 
                     <h1>
-                        <span>Cargar fotos</span><br/>
+                        <span>Cargar foto</span><br/>
                     </h1>
 
                     <div className="App">
                         <input type="file" onChange={(e) => setFile(e.target.files[0])}/>
-                        {file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)}/> : null}
+                        {file ? <img alt="Preview" height="140" src={URL.createObjectURL(file)}/> : null}
                         <button onClick={upload}>Upload</button>
                     </div>
 
