@@ -3,7 +3,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { Link } from "react-router-dom";
-import logo from "../images//sign-gedc253aab_1280.png";
+import Logo from '../components/Logo';
 
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -49,9 +49,7 @@ const UpdateData = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack floors
-        const params = new URLSearchParams([['property_id', id_property]]);
-        foto = window.localStorage.getItem("url");
-
+        
         let username;
         if (!window.localStorage.getItem("username")) {
             console.log("no autorizado")
@@ -63,20 +61,24 @@ const UpdateData = () => {
         }
 
         try {
-            const json = {
-                'direction': direccion, 'province': provincia, 'location': localidad,
-                'country': pais, 'toilets': banios, 'rooms': habitaciones, 'people': personas, 'description': descripcion, 'email_user': email_user
-            }
-
             setEmail(username)
-            axios.post('/updateProperty', json, { params },
-                {
-                    headers: { 'Content-Type': 'application/json' }
-                }
-
-
-            ).then();
-            setErrMsg(null)
+            console.log(username)
+            foto = window.localStorage.getItem("url");
+            
+            //const params = new URLSearchParams();
+            //params.append('property_id', id_property)
+            
+            const params = {property_id: id_property}
+            
+            const json = JSON.stringify({
+                'direction': direccion,'province': provincia,  'location': localidad,
+                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'link': foto, 'email_user': username})
+            
+            const headers = { 'Content-Type': 'application/json' }
+            
+            axios({method: 'post', url: '/updateProperty', data: json,
+                   params: params, headers: headers});
+                   
             setSuccess(true);
 
 
@@ -108,10 +110,7 @@ const UpdateData = () => {
             ) : (
 
                 <section style={{ backgroundColor: 'grey' }}>
-                    <h1 style={{ color: 'orange', fontSize: 20 }}>#Hospedate</h1>
-                    <h1 style={{ color: 'orange', fontSize: 20 }}>Ahora</h1>
-                    <img style={{ height: 100, width: 100, alignSelf: 'center' }} src={logo} alt="Logo" />
-                    <br />
+                    <Logo/>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Ingrese los datos de la propiedad</h1>
                     <form onSubmit={handleSubmit}>
