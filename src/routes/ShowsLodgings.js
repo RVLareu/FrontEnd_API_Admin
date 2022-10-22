@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from '../api/axios';
 import Card from "../components/Card";
-import { Box } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
+import { Add } from '@mui/icons-material';
 
 const ShowsLodgings = () => {
+
+  const navigate = useNavigate();
 
   const [lodgings, setLodgings] = useState([]);
 
@@ -37,14 +40,28 @@ const ShowsLodgings = () => {
 
 
   return (
-    
-    <Box sx={{display:'flex',flexWrap: 'wrap' }}>
+    <>
+    { (lodgings && lodgings.length > 0) ? 
+      <Box sx={{display:'flex',flexWrap: 'wrap' }}>
         {lodgings.map(item => {
           return (
               <Card key={item.id} {...item} username={username} updateLodgings={loadLodgings} />
           )}
         )}   
-    </Box>
+      </Box>
+      : <Typography style={{color: "black"}} variant="h6" gutterBottom>
+        No tenés propiedades cargadas
+      </Typography>
+
+      
+    }
+
+      <Button variant="contained" onClick={() => navigate("/cargaPropiedad")} endIcon={<Add />}>
+        Cargar propiedad
+      </Button>
+     
+    
+    </>
   
   )
 }

@@ -7,8 +7,8 @@ export class Logo extends React.Component {
 
     return (
      <div>
-       <h1 style={{ color:'orange', fontSize: 20 }}>#Hospedate</h1>
-       <h1 style={{ color:'orange', fontSize: 20 }}>Ahora</h1>
+       <h1 style={{ color:'white', fontSize: 20 }}>#Hospedate</h1>
+       <h1 style={{ color:'white', fontSize: 20 }}>Ahora</h1>
        <img style={{height: 100, width: 100, alignSelf:'center' }} src={logo} alt="Logo" />
        <br />
      </div>

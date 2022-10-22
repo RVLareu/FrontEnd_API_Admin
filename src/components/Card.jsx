@@ -45,7 +45,7 @@ const deleteProperty = async (property_id, username, updateFunction) => {
     cancelButtonText: 'No',
     dangerMode: true}).then(function(result) {
       if (result['isConfirmed']) {
-        axios.post('/deleteProperty/', {},{ params })
+        axios.post(DELETE_PROPERTY_URL, {},{ params })
         .then((response) => {
           updateFunction();
         })
