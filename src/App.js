@@ -9,6 +9,7 @@ import Casero from './routes/Casero';
 import Missing from './routes/Missing';
 import Unauthorized from './routes/Unauthorized';
 import LinkPage from './routes/LinkPage';
+import ProfilePage from './routes/ProfilePage';
 import RequireAuth from './components/RequireAuth';
 import { Routes, Route } from 'react-router-dom';
 import CargaPropiedad from './components/CargaPropiedad';
@@ -53,6 +54,7 @@ function App() {
       <Route path="unauthorized" element={<Unauthorized />} />
       <Route path="fileLoader" element={<FileLoader />} />
       <Route path="dragAndDrop" element={<DragAndDrop />} />
+      <Route path="profile" element={<ProfilePage />} />
       
       {/*
       <Route element={<RequireAuth allowedRoles={[ROLES.Inquilino]} />}>
