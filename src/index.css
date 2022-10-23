@@ -37,32 +37,11 @@ section {
     background-color: black;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    flex-grow: 1;
-    padding-bottom: 1rem;
-}
-
 a, a:visited {
     color: #fff;
 }
 
-input[type="text"],
-input[type="password"],
-button,
-textarea {
-  font-family: 'Nunito', sans-serif;
-  font-size: 22px;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-}
 
-label,
-button {
-  margin-top: 1rem;
-}
 
 button {
   padding: 0.5rem;
@@ -112,3 +91,27 @@ button {
 .line {
     display: inline-block;
 }
+
+
+form.custom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+
+.custom input[type="text"],
+.custom input[type="password"],
+.custom button,
+.custom textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.custom label.custom,
+.custom button.custom {
+  margin-top: 1rem;
+} 

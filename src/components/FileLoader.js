@@ -61,7 +61,7 @@ export const FileLoader = () => {
 
                     </section>)
 
-                : (<section style={{backgroundColor: 'grey'}}>
+                : (<section className="custom" style={{backgroundColor: 'grey'}}>
                     <Logo/>
 
                     <h1>

@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
+
 const PROPERTYHANDLER_URL = '/createProperty';
 
 const CargaPropiedad = () => {
@@ -100,7 +101,7 @@ const CargaPropiedad = () => {
                     <Logo/>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Ingrese los datos de la propiedad</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form class="custom" onSubmit={handleSubmit}>
 
                         <br />
                         <Link to="/fileLoader">Cargar Fotos</Link>

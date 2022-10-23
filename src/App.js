@@ -23,6 +23,7 @@ import ImageSelected from './components/ImageSelected';
 import Message from './components/Message';
 import useUploadImage from './hooks/useUploadImage';
 import FileUpload from './utils/FileUpload';
+import EditProfile from './routes/EditProfilePage';
 
 
 const ROLES = {
@@ -55,6 +56,9 @@ function App() {
       <Route path="fileLoader" element={<FileLoader />} />
       <Route path="dragAndDrop" element={<DragAndDrop />} />
       <Route path="profile" element={<ProfilePage />} />
+
+      <Route path="profile/edit" element={<EditProfile />} />
+
       
       {/*
       <Route element={<RequireAuth allowedRoles={[ROLES.Inquilino]} />}>

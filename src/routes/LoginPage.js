@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from '../api/axios';
 import Logo from '../components/Logo';
 
+
 const LOGIN_URL = '/user/login';
 
 const LoginPage = () => {
@@ -71,7 +72,7 @@ const LoginPage = () => {
             
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Ingresar</h1>
-            <form onSubmit={handleSubmit}>
+            <form class="custom" onSubmit={handleSubmit}>
                 <label htmlFor="username">Nombre de usuario:</label>
                 <input
                     type="text"

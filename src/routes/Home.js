@@ -30,7 +30,7 @@ const Home = () => {
     }
 
     return (
-        <Paper elevation={3} style={{backgroundColor: 'grey', padding: '40px'}} >
+        <Paper className="custom" elevation={3} style={{backgroundColor: 'grey', padding: '40px'}} >
             <p>Home</p>
             <br />
             <Logo />

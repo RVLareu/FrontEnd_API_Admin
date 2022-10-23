@@ -5,6 +5,7 @@ import axios from '../api/axios';
 import { Link } from "react-router-dom";
 import Logo from '../components/Logo';
 
+
 const USER_REGEX = /^[A-z][A-z0-9-_@].{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/users/';
@@ -95,7 +96,7 @@ const RegisterPage = () => {
                     <Logo />
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Registrarse</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form class="custom" onSubmit={handleSubmit}>
                         <label htmlFor="username">
                             Nombre de usuario:
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
