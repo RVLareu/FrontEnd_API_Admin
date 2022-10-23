@@ -28,6 +28,12 @@ export default function ButtonAppBar() {
                     Propiedades
             </Link>
         </Button>
+
+        <Button>
+            <Link style={{ textDecoration: 'none' }} to="/profile">
+                    Perfil
+            </Link>
+        </Button>
             <IconButton>
                     <Home/>
             </IconButton>

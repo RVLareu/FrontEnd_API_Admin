@@ -27,45 +27,58 @@ const EditProfile = () => {
 
 
   return (
-    <Box
+    <Paper sx={{width: 700, paddingBottom: "30px", display: 'flex', flexDirection:'column', alignItems:'center', textAlign: 'left'}}
       component="form"
       noValidate
       autoComplete="off">
-
+      <div style={{width: "60%",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center"}}>
       <Avatar
         alt={username.toLocaleUpperCase()}
         src="broken-image.jpg"
         sx={{ width: 100, height: 100 , marginTop: "10px", marginBottom: "20px"}}
       />
+      <Button sx={{height: "50px"}}> Cambiar imagen </Button>
+      </div>
 
       <TextField
           id="outlined-read-only-input"
           label="Nombre"
           defaultValue="Nombre"
+          sx={{margin: "10px 0 10px 0", width: "450px"}}
         />
 
       <TextField
           id="outlined-read-only-input"
           label="Biografia"
           defaultValue="Mi biografia"
+          sx={{margin: "10px 0 10px 0", width: "450px"}}
+          multiline
         />
 
       <TextField
           id="outlined-read-only-input"
           label="Ocupación"
           defaultValue="Mi ocupacion"
+
+          sx={{margin: "10px 0 10px 0", width: "450px"}}
+
         />
 
       <TextField
           id="outlined-read-only-input"
           label="Ubicación"
           defaultValue=""
+          sx={{margin: "10px 0 10px 0", width: "450px"}}
+
         />
 
       <Button sx={{marginTop: "10px"}} variant="contained" onClick={() => {alert("TO DO")}} >
         Aceptar
       </Button>
-  </Box>
+  </Paper>
   
   )
 }
