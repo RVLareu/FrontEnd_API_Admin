@@ -24,6 +24,10 @@ import Message from './components/Message';
 import useUploadImage from './hooks/useUploadImage';
 import FileUpload from './utils/FileUpload';
 import EditProfile from './routes/EditProfilePage';
+import MakePublication from './components/MakePublication';
+import ShowPublication from './routes/ShowsPublications';
+import UpdatePublications from './components/UpdatePublcations';
+
 
 
 const ROLES = {
@@ -56,6 +60,9 @@ function App() {
       <Route path="fileLoader" element={<FileLoader />} />
       <Route path="dragAndDrop" element={<DragAndDrop />} />
       <Route path="profile" element={<ProfilePage />} />
+      <Route path="makePublication"  element={<MakePublication />}/>
+      <Route path="showPublication"  element={<ShowPublication />}/>
+      <Route path="updatePublications/" element={<UpdatePublications/>} />
 
       <Route path="profile/edit" element={<EditProfile />} />
 

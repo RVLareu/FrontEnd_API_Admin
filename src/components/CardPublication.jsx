@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
 import {Image} from "@mui/icons-material";
 
 
-const DELETE_PROPERTY_URL = '/deleteProperty/';
+const DELETE_PROPERTY_URL = '/deletePublication/';
 
 const bull = (
   <Box
@@ -23,8 +23,8 @@ const bull = (
 );
 
 const update = async (props) => {
-  window.localStorage.setItem("update_props", JSON.stringify (props))
-  window.location.href="/updateData/"
+  window.localStorage.setItem("update_publication", JSON.stringify (props.Publication))
+  window.location.href="/updatePublications/"
 }
 
 const makePublication = async (props) => {
@@ -32,10 +32,10 @@ const makePublication = async (props) => {
   window.location.href="/makePublication/"
 }
 
-const deleteProperty = async (property_id, username, updateFunction) => {
+const deletePublication = async (property_id, username, updateFunction) => {
 
   console.log(property_id);
-  const params = new URLSearchParams([['property_id', property_id], ['email_user', username]]);
+  const params = new URLSearchParams([['publication_id', property_id], ['email_user', username]]);
   swal.fire({
     title: "Confirmar",
     text: "¿Confirmas que deseas borrar la propiedad?",
@@ -45,7 +45,7 @@ const deleteProperty = async (property_id, username, updateFunction) => {
     cancelButtonText: 'No',
     dangerMode: true}).then(function(result) {
       if (result['isConfirmed']) {
-        axios.post(DELETE_PROPERTY_URL, {},{ params })
+        axios.delete(DELETE_PROPERTY_URL, {},{ params })
         .then((response) => {
           updateFunction();
         })
@@ -71,21 +71,19 @@ export default function Cards(props) {
           <CardContent>
             <img alt="Preview" height="100" src={props.link} />
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              {props.country}
+              {props.Publication.title}
             </Typography>
             <Typography variant="h5" component="div">
-              {props.description}
+              {props.Publication.description}
             </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              {props.location}
-            </Typography>
+            
             <Typography variant="body2">
-              {props.direction}
+              {props.Publication.price}
             </Typography>
           </CardContent>
           <CardActions sx={{justifyContent:'center'}}>
             <Button variant="contained" onClick={()=>{update(props)}} color="success">Modificar</Button>
-            <Button variant="contained" onClick={()=>{deleteProperty(props.id, username, props.updateLodgings)}} color="success">Eliminar</Button>
+            <Button variant="contained" onClick={()=>{deletePublication(props.id, username, props.updateLodgings)}} color="success">Eliminar</Button>
             <Button variant="contained" onClick={()=>{makePublication(props)}} color="success">Publicar</Button>
           </CardActions>
         </React.Fragment>

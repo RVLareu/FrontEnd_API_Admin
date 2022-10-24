@@ -104,7 +104,7 @@ const UpdateData = () => {
                 <section style={{ backgroundColor: 'grey' }}>
                     <h1>Propiedad actualizada con exito!</h1>
                     <p>
-                        <a href="/">Ir a la pagina principalr</a>
+                        <a href="/">Ir a la pagina principal</a>
                     </p>
                 </section>
             ) : (

@@ -2,7 +2,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 import Logo from '../components/Logo';
-import {Alert, Paper} from '@mui/material';
+import { Alert, Paper } from '@mui/material';
 
 
 
@@ -11,7 +11,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     let username;
-    if (!window.localStorage.getItem("username")){
+    if (!window.localStorage.getItem("username")) {
         window.location.href = "/login";
         return;
     } else {
@@ -30,13 +30,15 @@ const Home = () => {
     }
 
     return (
-        <Paper className="custom" elevation={3} style={{backgroundColor: 'grey', padding: '40px'}} >
+        <Paper className="custom" elevation={3} style={{ backgroundColor: 'grey', padding: '40px' }} >
             <p>Home</p>
             <br />
             <Logo />
             <p>Estas logueado como {username}</p>
             <br />
             <Link to="/showLodgings">Mis Propiedades</Link>
+            <br />
+            <Link to="/showPublication">Mis publicaciones</Link>
             <br />
             <Link to="/admin">Ir a seccion casero </Link>
             <br />
