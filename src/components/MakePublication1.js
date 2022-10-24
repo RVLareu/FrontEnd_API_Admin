@@ -15,7 +15,7 @@ import { PrecisionManufacturing } from "@mui/icons-material";
 
 const PROPERTYHANDLER_URL = '/updateProperty/';
 
-const UpdatePublications = () => {
+const MakePublicationV1 = () => {
 
 
     let props = window.localStorage.getItem("update_publication")
@@ -33,23 +33,23 @@ const UpdatePublications = () => {
 
 
     /*Datos publicacion*/
-    const [id_property, setPropertyID] = useState(parse_properties.id);
-    const [id_publication, setPublicationID] = useState(parse_publication.id);
-    const [titulo, setTitle] = useState(parse_publication.title);
-    const [descripcion, setDescripcion] = useState(parse_publication.description);
-    const [email_user, setEmail] = useState(parse_publication.email_user);
-    const [precio, setPrecio] = useState(parse_publication.price);
+    const [id_property, setPropertyID] = useState('');
+    const [id_publication, setPublicationID] = useState('');
+    const [titulo, setTitle] = useState('');
+    const [descripcion, setDescripcion] = useState('');
+    const [email_user, setEmail] = useState('');
+    const [precio, setPrecio] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
     
-    const [direccion, setDireccion] = useState(parse_properties.direction);
-    const [localidad, setLocalidad] = useState(parse_properties.location);
-    const [provincia, setProvincia] = useState(parse_properties.province);
-    const [pais, setPais] = useState(parse_properties.country);
-    const [habitaciones, setHabitaciones] = useState(parse_properties.rooms);
-    const [banios, setBanios] = useState(parse_properties.toilets);
-    const [personas, setPersonas] = useState(parse_properties.people);
+    const [direccion, setDireccion] = useState('');
+    const [localidad, setLocalidad] = useState('');
+    const [provincia, setProvincia] = useState('');
+    const [pais, setPais] = useState('');
+    const [habitaciones, setHabitaciones] = useState('');
+    const [banios, setBanios] = useState('');
+    const [personas, setPersonas] = useState('');
     let [foto, setFoto] = useState('');
 
 
@@ -69,39 +69,47 @@ const UpdatePublications = () => {
         }
 
         try {
+           
+
+            
             setEmail(username)
             console.log(username)
+            foto = window.localStorage.getItem("url")
+            const response = await axios.post('/createProperty',
+                JSON.stringify({
+                    'direction': direccion,'province': provincia,  'location': localidad,
+                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'link': foto, 'email_user': username
+                }),
+                {
+                    headers: { 'Content-Type': 'application/json' }
+                },
+
+            );
+            
+         
+            
+            const response_2 = await axios.post('/createPublication',
+            JSON.stringify({
+                'title': titulo, 'description': descripcion, 'price': precio, 'property_id': response.data.id, 'email_user': username
+            }),
+            {
+                headers: { 'Content-Type': 'application/json' }
+            },
+
+        );
+
+            
+           
+
+
 
 
             //const params = new URLSearchParams();
             //params.append('property_id', id_property)
 
-            const params = { publication_id: id_publication}
-
-            const json = JSON.stringify({
-                'title': titulo, 'description': descripcion, 'price': precio, 'property_id': id_property, 'email_user': username
-            })
-
-            const headers = { 'Content-Type': 'application/json' }
-
-            axios({
-                method: 'put', url: '/updatePublication', data: json,
-                params: params, headers: headers
-            });
-
-            const params_1 = { property_id: id_property}
-
-            const json_1 = JSON.stringify({
-                'direction': direccion,'province': provincia,  'location': localidad,
-                'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'link': foto, 'email_user': username}
-            )
-
             
 
-            axios({
-                method: 'put', url: '/updateProperty', data: json_1,
-                params: params_1, headers: headers
-            });
+          
 
 
 
@@ -324,7 +332,7 @@ const UpdatePublications = () => {
                         <br/>
 
 
-                        <button >Actualizar Datos</button>
+                        <button >Crear publicación</button>
                     </form>
                 </section>
             )}
@@ -332,4 +340,4 @@ const UpdatePublications = () => {
     )
 }
 
-export default UpdatePublications
+export default MakePublicationV1

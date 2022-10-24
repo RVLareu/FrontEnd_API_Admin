@@ -11,7 +11,8 @@ import swal from 'sweetalert2';
 import {Image} from "@mui/icons-material";
 
 
-const DELETE_PROPERTY_URL = '/deletePublication/';
+const DELETE_PUBLICATION_URL = '/deletePublication/';
+const DELETE_PROPERTY_URL = '/deleteProperty/';
 
 const bull = (
   <Box
@@ -29,10 +30,14 @@ const update = async (props) => {
 
 
 
-const deletePublication = async (property_id, username, updateFunction) => {
+const deletePublication = async (props, username, updateFunction) => {
 
-  console.log(property_id);
-  const params = new URLSearchParams([['publication_id', property_id], ['email_user', username]]);
+  console.log(props.Publication.id)
+  console.log(props.Property.id)
+  let params = new URLSearchParams([['publication_id', props.Publication.id], ['email_user', username]]);
+  
+  console.log(params)
+ 
   swal.fire({
     title: "Confirmar",
     text: "¿Confirmas que deseas borrar la propiedad?",
@@ -42,16 +47,31 @@ const deletePublication = async (property_id, username, updateFunction) => {
     cancelButtonText: 'No',
     dangerMode: true}).then(function(result) {
       if (result['isConfirmed']) {
-        axios.delete(DELETE_PROPERTY_URL,{ params })
+       axios.delete(DELETE_PUBLICATION_URL,{ params })
         .then((response) => {
           updateFunction();
+          console.log('entro')
+          
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+        params = new URLSearchParams([['property_id', props.Property.id], ['email_user', username]]);
+
+        axios.delete(DELETE_PROPERTY_URL,{ params})
+        .then((response) => {
+          updateFunction();
+          console.log('entro')
           
         })
         .catch((error) => {
           console.log(error);
         });
       }
+
       window.location.href="/showPublication"
+      
       }
     )
 
@@ -82,7 +102,7 @@ export default function Cards(props) {
           </CardContent>
           <CardActions sx={{justifyContent:'center'}}>
             <Button variant="contained" onClick={()=>{update(props)}} color="success">Modificar</Button>
-            <Button variant="contained" onClick={()=>{deletePublication(props.Publication.id, username, props.updateLodgings)}} color="success">Eliminar</Button>
+            <Button variant="contained" onClick={()=>{deletePublication(props, username, props.updateLodgings)}} color="success">Eliminar</Button>
             
           </CardActions>
         </React.Fragment>

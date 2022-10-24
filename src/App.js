@@ -24,7 +24,7 @@ import Message from './components/Message';
 import useUploadImage from './hooks/useUploadImage';
 import FileUpload from './utils/FileUpload';
 import EditProfile from './routes/EditProfilePage';
-import MakePublication from './components/MakePublication';
+import MakePublication from './components/MakePublication1';
 import ShowPublication from './routes/ShowsPublications';
 import UpdatePublications from './components/UpdatePublcations';
 
