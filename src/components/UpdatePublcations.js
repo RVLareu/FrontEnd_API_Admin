@@ -19,7 +19,8 @@ const UpdatePublications = () => {
 
 
     let props = window.localStorage.getItem("update_publication")
-    let parse = JSON.parse(props)
+    let parse_publication = (JSON.parse(props)).Publication
+    let parse_properties = JSON.parse(props).Property
     console.log(props)
 
     const userRef = useRef();
@@ -32,11 +33,12 @@ const UpdatePublications = () => {
 
 
     /*Datos publicacion*/
-    const [id_property, setPropertyID] = useState(parse.id);
-    const [titulo, setTitle] = useState(parse.title);
-    const [descripcion, setDescripcion] = useState(parse.description);
-    const [email_user, setEmail] = useState(parse.email_user);
-    const [precio, setPrecio] = useState(parse.price);
+    const [id_property, setPropertyID] = useState(parse_properties.id);
+    const [id_publication, setPublicationID] = useState(parse_publication.id);
+    const [titulo, setTitle] = useState(parse_publication.title);
+    const [descripcion, setDescripcion] = useState(parse_publication.description);
+    const [email_user, setEmail] = useState(parse_publication.email_user);
+    const [precio, setPrecio] = useState(parse_publication.price);
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -64,7 +66,7 @@ const UpdatePublications = () => {
             //const params = new URLSearchParams();
             //params.append('property_id', id_property)
 
-            const params = { property_id: id_property }
+            const params = { publication_id: id_publication}
 
             const json = JSON.stringify({
                 'title': titulo, 'description': descripcion, 'price': precio, 'property_id': id_property, 'email_user': username

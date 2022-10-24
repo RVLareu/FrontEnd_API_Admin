@@ -23,7 +23,7 @@ const bull = (
 );
 
 const update = async (props) => {
-  window.localStorage.setItem("update_publication", JSON.stringify (props.Publication))
+  window.localStorage.setItem("update_publication", JSON.stringify (props))
   window.location.href="/updatePublications/"
 }
 
@@ -68,7 +68,7 @@ export default function Cards(props) {
       <Card variant="outlined" sx={{m:1}}>
         <React.Fragment>
           <CardContent>
-            <img alt="Preview" height="100" src={props.link} />
+            <img alt="Preview" height="100" src={props.Property.link} />
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {props.Publication.title}
             </Typography>
