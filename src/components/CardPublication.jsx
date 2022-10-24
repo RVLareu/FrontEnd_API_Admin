@@ -27,10 +27,7 @@ const update = async (props) => {
   window.location.href="/updatePublications/"
 }
 
-const makePublication = async (props) => {
-  window.localStorage.setItem("publicate_props", JSON.stringify (props))
-  window.location.href="/makePublication/"
-}
+
 
 const deletePublication = async (property_id, username, updateFunction) => {
 
@@ -45,14 +42,16 @@ const deletePublication = async (property_id, username, updateFunction) => {
     cancelButtonText: 'No',
     dangerMode: true}).then(function(result) {
       if (result['isConfirmed']) {
-        axios.delete(DELETE_PROPERTY_URL, {},{ params })
+        axios.delete(DELETE_PROPERTY_URL,{ params })
         .then((response) => {
           updateFunction();
+          
         })
         .catch((error) => {
           console.log(error);
         });
       }
+      window.location.href="/showPublication"
       }
     )
 
@@ -83,8 +82,8 @@ export default function Cards(props) {
           </CardContent>
           <CardActions sx={{justifyContent:'center'}}>
             <Button variant="contained" onClick={()=>{update(props)}} color="success">Modificar</Button>
-            <Button variant="contained" onClick={()=>{deletePublication(props.id, username, props.updateLodgings)}} color="success">Eliminar</Button>
-            <Button variant="contained" onClick={()=>{makePublication(props)}} color="success">Publicar</Button>
+            <Button variant="contained" onClick={()=>{deletePublication(props.Publication.id, username, props.updateLodgings)}} color="success">Eliminar</Button>
+            
           </CardActions>
         </React.Fragment>
       </Card>

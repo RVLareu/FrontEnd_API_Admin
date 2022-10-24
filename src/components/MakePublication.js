@@ -99,6 +99,9 @@ const MakePublication = () => {
                     <h1>Publicacion Realizada con exito!</h1>
                     <p>
                         <a href="/">Ir a la pagina principal</a>
+                        <br />
+                        <a href="/showPublication">Ir a publicaciones</a>
+
                     </p>
                 </section>
             ) : (

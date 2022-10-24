@@ -56,7 +56,7 @@ const ShowsPublications = () => {
       
     }
 
-      <Button variant="contained" onClick={() => navigate("/MakePublication")} endIcon={<Add />}>
+      <Button variant="contained" onClick={() => navigate("/showLodgings")} endIcon={<Add />}>
         Realizar una publicación
       </Button>
      
