@@ -7,7 +7,7 @@ const Index = () => {
 
     return (
         <div  >
-            <p>Home</p>
+            <p>en construccion</p>
         
         </div>)
 
