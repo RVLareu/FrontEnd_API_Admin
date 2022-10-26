@@ -22,6 +22,8 @@ export class FileLoaderGallery2 extends Component {
 
     fileObj = [];
     fileArray = [];
+
+    email_user = window.localStorage.getItem("username");
     
     constructor(props) {
         super(props)
@@ -90,7 +92,10 @@ export class FileLoaderGallery2 extends Component {
         e.preventDefault()
         this.upload()
         console.log(this.state.file)
+        window.localStorage.setItem("username", this.email_user)
+        
     }
+    
    
     render() {
    
@@ -102,12 +107,12 @@ export class FileLoaderGallery2 extends Component {
                           <img src={url} alt='preview' height="100"/>
                       ))}
                   </div>
-                  <div className="form-group">
-                      <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
-                  </div>
-                  <button type="button" className="btn btn-danger btn-block" onClick={this.uploadFiles}>Upload</button>
-                  <Link to="/cargaPropiedad"> Volver </Link>
-                
+                  
+                    <div className="form-group">
+                        <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
+                    </div>
+                    <button onClick={this.uploadFiles}>Upload</button>
+                    <a href="/cargaPropiedad" onClick="windows.history.go(-1); return false;">Volver</a>
             </section>
         )
     }

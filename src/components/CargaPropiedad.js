@@ -31,7 +31,7 @@ const CargaPropiedad = () => {
     const [email_user, setEmail2] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-    let [foto, setFoto] = useState('');
+    const [images, setImages] = useState('');
 
 
     const handleSubmit = async (e) => {

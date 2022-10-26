@@ -59,72 +59,70 @@ const ViewPublication = () => {
 
 
     return (
-       
                 <section style={{ backgroundColor: 'grey' }}>
                     <Logo />
 
                     <h2>Datos de la publicación</h2>
 
-                        <div className="form-group multi-preview">
-                          {(props.Property.images || []).map(url => (
-                          <img src={url} alt="Preview" height="150" />
-                          ))}
-                       </div>
-                        <br />
+                    <div className="form-group multi-preview">
+                        {(props.Property.images || []).map(url => (
+                        <img src={url} alt="Preview" height="150" />
+                        ))}
+                    </div>
+                    <br />
 
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                           {props.Publication.title}
-                       </Typography>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        {props.Publication.title}
+                    </Typography>
                        
-                        <Typography variant="h5" component="div">
-                         {props.Publication.description}
-                       </Typography>
+                    <Typography variant="h5" component="div">
+                        {props.Publication.description}
+                    </Typography>
             
-                       <Typography variant="body2">
-                         {props.Publication.price}
-                       </Typography>
+                    <Typography variant="body2">
+                       {props.Publication.price}
+                    </Typography>
 
-                       <Typography variant="body2">
-                         {props.Publication.price}
-                       </Typography>
+                    <Typography variant="body2">
+                      {props.Publication.price}
+                    </Typography>
                        
            
-                       <Typography variant="body2">
-                         {props.Property.direction}
-                       </Typography>
+                    <Typography variant="body2">
+                      {props.Property.direction}
+                    </Typography>
 
-                       <Typography variant="body2">
-                         {props.Property.province}
-                       </Typography>
+                    <Typography variant="body2">
+                       {props.Property.province}
+                    </Typography>
                        
-                       <Typography variant="body2">
-                         {props.Property.location}
-                       </Typography>
+                    <Typography variant="body2">
+                       {props.Property.location}
+                    </Typography>
                        
-                       <Typography variant="body2">
-                         {props.Property.country}
-                       </Typography>
+                    <Typography variant="body2">
+                       {props.Property.country}
+                     </Typography>
                        
-                       <Typography variant="body2">
-                         {props.Property.toiletes}
-                       </Typography>
+                     <Typography variant="body2">
+                       {props.Property.toiletes}
+                     </Typography>
                        
-                       <Typography variant="body2">
-                         {props.Property.rooms}
-                       </Typography>
+                     <Typography variant="body2">
+                       {props.Property.rooms}
+                     </Typography>
                        
-                       <Typography variant="body2">
-                         {props.Property.people}
-                       </Typography>
+                     <Typography variant="body2">
+                       {props.Property.people}
+                     </Typography>
                        
-                       <Typography variant="body2">
-                         {props.Property.description}
-                       </Typography>
+                     <Typography variant="body2">
+                       {props.Property.description}
+                     </Typography>
                        
-                       <button onClick={navigate(-1)}> Volver </button>
+                     <button onClick={navigate(-1)}> Volver </button>
 
                 </section>
-            
     )
 }
 

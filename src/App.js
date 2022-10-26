@@ -19,7 +19,7 @@ import NavBar from './components/NavBar';
 import {FileLoader} from './components/FileLoader';
 import {FileLoaderGallery2} from './components/FileLoaderGallery2';
 import EditProfile from './routes/EditProfilePage';
-import MakePublication from './components/MakePublication1';
+import MakePublication from './components/MakePublication';
 import ShowsPublications from './routes/ShowsPublications';
 import UpdatePublications from './components/UpdatePublcations';
 import ViewPublication from './components/ViewPublcation';

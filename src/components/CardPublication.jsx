@@ -26,7 +26,7 @@ const bull = (
 
 const viewPublication = async (props) => {
   window.localStorage.setItem("view_publication", JSON.stringify (props))
-  window.location.href="/viewPublications/"
+  window.location.href="/viewPublication/"
 }
 
 
@@ -95,7 +95,7 @@ export default function Cards(props) {
       <Card variant="outlined" sx={{m:1}}>
         <React.Fragment>
           <CardContent>
-            <img alt="Preview" height="100" src={props.Property.link} />
+            <img alt="Preview" height="100" src={props.Property.images} />
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {props.Publication.title}
             </Typography>
@@ -108,7 +108,7 @@ export default function Cards(props) {
             </Typography>
           </CardContent>
           <CardActions sx={{justifyContent:'center'}}>
-            <Button variant="contained" onClick={()=>{viewPublication(props)}} color="success">Consultar publicación</Button>
+            <Button variant="contained" onClick={()=>{viewPublication(props)}} color="success">Consultar</Button>
             <Button variant="contained" onClick={()=>{update(props)}} color="success">Modificar</Button>
             <Button variant="contained" onClick={()=>{deletePublication(props, username, props.updateLodgings)}} color="success">Eliminar</Button>
             

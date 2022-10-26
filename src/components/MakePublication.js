@@ -50,7 +50,7 @@ const MakePublication = () => {
     const [habitaciones, setHabitaciones] = useState('');
     const [banios, setBanios] = useState('');
     const [personas, setPersonas] = useState('');
-    let [foto, setFoto] = useState('');
+    const [images, setImages] = useState('');
 
 
 
@@ -69,16 +69,20 @@ const MakePublication = () => {
         }
 
         try {
-           
-
+            const urls = [];
+            const links = [];
             
+             for (const i in urls) {
+               links.push({'link': urls[i]})
+               }
+
             setEmail(username)
             console.log(username)
-            foto = window.localStorage.getItem("url")
+            urls = window.localStorage.getItem("urls")
             const response = await axios.post('/createProperty',
                 JSON.stringify({
                     'direction': direccion,'province': provincia,  'location': localidad,
-                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'link': foto, 'email_user': username
+                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'links': links, 'email_user': username
                 }),
                 {
                     headers: { 'Content-Type': 'application/json' }
