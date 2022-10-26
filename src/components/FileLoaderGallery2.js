@@ -112,7 +112,7 @@ export class FileLoaderGallery2 extends Component {
                         <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
                     </div>
                     <button onClick={this.uploadFiles}>Upload</button>
-                    <a href="/cargaPropiedad" onClick="windows.history.go(-1); return false;">Volver</a>
+                    <a href="/makePublication" onClick="windows.history.go(-1); return false;">Volver</a>
             </section>
         )
     }
