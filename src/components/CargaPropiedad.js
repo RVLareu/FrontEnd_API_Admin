@@ -28,7 +28,7 @@ const CargaPropiedad = () => {
     const [banios, setBanios] = useState('');
     const [personas, setPersonas] = useState('');
     const [descripcion, setDescripcion] = useState('');
-    const [email_user, setEmail] = useState('');
+    const [email_user, setEmail2] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
     let [foto, setFoto] = useState('');
@@ -51,13 +51,14 @@ const CargaPropiedad = () => {
 
         try {
 
-            setEmail(username)
+            setEmail2(username)
             console.log(username)
             foto = window.localStorage.getItem("url")
             const response = await axios.post('/createProperty',
                 JSON.stringify({
                     'direction': direccion,'province': provincia,  'location': localidad,
-                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'link': foto, 'email_user': username
+                    'country': pais, 'toilets': banios, 'rooms': habitaciones, 'people': personas, 'description': descripcion,
+                    images: [{'link': foto}], 'email_user': username
                 }),
                 {
                     headers: { 'Content-Type': 'application/json' }
@@ -104,7 +105,7 @@ const CargaPropiedad = () => {
                     <form class="custom" onSubmit={handleSubmit}>
 
                         <br />
-                        <Link to="/fileLoader">Cargar Fotos</Link>
+                        <Link to="/fileLoaderGallery2">Cargar Fotos</Link>
 
                         <label htmlFor="direccion">
                             Direccion:

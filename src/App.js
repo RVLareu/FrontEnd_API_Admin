@@ -17,12 +17,7 @@ import ShowsLodgings from './routes/ShowsLodgings';
 import UpdateData from './components/UpdateData';
 import NavBar from './components/NavBar';
 import {FileLoader} from './components/FileLoader';
-import BoxDragAndDrop from './components/BoxDragAndDrop';
-import {DragAndDrop} from './components/DragAndDrop';
-import ImageSelected from './components/ImageSelected';
-import Message from './components/Message';
-import useUploadImage from './hooks/useUploadImage';
-import FileUpload from './utils/FileUpload';
+import {FileLoaderGallery2} from './components/FileLoaderGallery2';
 import EditProfile from './routes/EditProfilePage';
 import MakePublication from './components/MakePublication1';
 import ShowPublication from './routes/ShowsPublications';
@@ -58,7 +53,7 @@ function App() {
       <Route path="updateData/" element={<UpdateData/>} />
       <Route path="unauthorized" element={<Unauthorized />} />
       <Route path="fileLoader" element={<FileLoader />} />
-      <Route path="dragAndDrop" element={<DragAndDrop />} />
+      <Route path="fileLoaderGallery2" element={<FileLoaderGallery2 />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="makePublication"  element={<MakePublication />}/>
       <Route path="showPublication"  element={<ShowPublication />}/>
