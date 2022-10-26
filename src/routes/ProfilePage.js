@@ -43,7 +43,7 @@ const Profile = () => {
       {profileData ? <>
       <Avatar
         alt={username.toLocaleUpperCase()}
-        src="broken-image.jpg"
+        src={profileData.pic}
         sx={{ width: 100, height: 100 , marginTop: "30px", marginBottom: "50px"}}
       />
 
