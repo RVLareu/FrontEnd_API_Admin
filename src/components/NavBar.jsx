@@ -30,7 +30,9 @@ export default function ButtonAppBar() {
             </Link>
         </Button>
             <IconButton>
-                    <Home/>
+              <Link style={{ textDecoration: 'none' }} to="/">
+                <Home/> 
+              </Link>
             </IconButton>
         </Toolbar>
       </AppBar>
