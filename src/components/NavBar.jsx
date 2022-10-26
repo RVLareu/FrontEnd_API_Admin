@@ -19,13 +19,8 @@ export default function ButtonAppBar() {
           </Typography>
 
         <Button>
-            <Link style={{ textDecoration: 'none' }} to="/">
+            <Link style={{ textDecoration: 'none' }} to="/showsPublications">
                     Publicaciones
-            </Link>
-        </Button>
-        <Button>
-            <Link style={{ textDecoration: 'none' }} to="/showLodgings">
-                    Propiedades
             </Link>
         </Button>
 
