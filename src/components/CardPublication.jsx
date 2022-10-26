@@ -23,6 +23,13 @@ const bull = (
   </Box>
 );
 
+
+const viewPublication = async (props) => {
+  window.localStorage.setItem("view_publication", JSON.stringify (props))
+  window.location.href="/viewPublications/"
+}
+
+
 const update = async (props) => {
   window.localStorage.setItem("update_publication", JSON.stringify (props))
   window.location.href="/updatePublications/"
@@ -101,6 +108,7 @@ export default function Cards(props) {
             </Typography>
           </CardContent>
           <CardActions sx={{justifyContent:'center'}}>
+            <Button variant="contained" onClick={()=>{viewPublication(props)}} color="success">Consultar publicación</Button>
             <Button variant="contained" onClick={()=>{update(props)}} color="success">Modificar</Button>
             <Button variant="contained" onClick={()=>{deletePublication(props, username, props.updateLodgings)}} color="success">Eliminar</Button>
             

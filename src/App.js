@@ -20,8 +20,9 @@ import {FileLoader} from './components/FileLoader';
 import {FileLoaderGallery2} from './components/FileLoaderGallery2';
 import EditProfile from './routes/EditProfilePage';
 import MakePublication from './components/MakePublication1';
-import ShowPublication from './routes/ShowsPublications';
+import ShowsPublications from './routes/ShowsPublications';
 import UpdatePublications from './components/UpdatePublcations';
+import ViewPublication from './components/ViewPublcation';
 
 
 
@@ -56,9 +57,9 @@ function App() {
       <Route path="fileLoaderGallery2" element={<FileLoaderGallery2 />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="makePublication"  element={<MakePublication />}/>
-      <Route path="showPublication"  element={<ShowPublication />}/>
+      <Route path="showsPublications"  element={<ShowsPublications />}/>
       <Route path="updatePublications/" element={<UpdatePublications/>} />
-
+      <Route path="viewPublication/" element={<ViewPublication/>} />
       <Route path="profile/edit" element={<EditProfile />} />
 
       

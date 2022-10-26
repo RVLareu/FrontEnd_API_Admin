@@ -16,6 +16,10 @@ import ImageUploading from "react-images-uploading";
 
 export class FileLoaderGallery2 extends Component {
    
+    static contextTypes = {
+       router: () => true,
+       }
+
     fileObj = [];
     fileArray = [];
     
@@ -28,6 +32,11 @@ export class FileLoaderGallery2 extends Component {
         this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this)
         this.uploadFiles = this.uploadFiles.bind(this)
     }
+    
+    handleBack = () => {
+       this.props.history.goBack()
+      }
+    
     
     upload = async () => {
 
@@ -43,25 +52,29 @@ export class FileLoaderGallery2 extends Component {
 
 
         const data = new FormData();
-        
+        const urls = [];
         
         for (let i = 0; i < this.fileObj[0].length; i++) {
             
-        data.append('file', this.fileObj[0][i]);
-        data.append('upload_preset', UPLOAD_PRESET);
-        data.append('cloud_name', CLOUD_NAME);
+           data.append('file', this.fileObj[0][i]);
+           data.append('upload_preset', UPLOAD_PRESET);
+           data.append('cloud_name', CLOUD_NAME);
+           
+           urls[i]=this.fileObj[0][i];
 
-        fetch(cloudinaryUrl,
-            {method: "POST",
-                body: data})
-            .then(resp => resp.json())
-            //.then(data => {
-            //    setUrl(data.url)})
-            //.then(setSuccess(true))
+           fetch(cloudinaryUrl,
+               {method: "POST",
+                   body: data})
+               .then(resp => resp.json())
+               //.then(data => {
+               //    setUrl(data.url)})
+               //.then(setSuccess(true))
           
-            //const data2 = await response.json()
-            .catch(err => console.log(err))
-          }
+               //const data2 = await response.json()
+               .catch(err => console.log(err))
+             }
+             
+           window.localStorage.setItem("urls",  urls);  
        
     }
     
@@ -92,6 +105,8 @@ export class FileLoaderGallery2 extends Component {
                     <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
                 </div>
                 <button type="button" className="btn btn-danger btn-block" onClick={this.uploadFiles}>Upload</button>
+                <button type="button" className="button icon-left" onClick={this.handleBack}>Volver</button>
+                
             </form >
         )
     }

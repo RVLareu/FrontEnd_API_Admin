@@ -15,7 +15,7 @@ import { PrecisionManufacturing } from "@mui/icons-material";
 
 const PROPERTYHANDLER_URL = '/updateProperty/';
 
-const MakePublicationV1 = () => {
+const MakePublication = () => {
 
 
     let props = window.localStorage.getItem("update_publication")
@@ -340,4 +340,5 @@ const MakePublicationV1 = () => {
     )
 }
 
-export default MakePublicationV1
+export default MakePublication
+
