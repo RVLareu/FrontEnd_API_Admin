@@ -43,7 +43,11 @@ export class FileLoaderGallery2 extends Component {
 
 
         const data = new FormData();
-        data.append('file', this.state.file);
+        
+        
+        for (let i = 0; i < this.fileObj[0].length; i++) {
+            
+        data.append('file', this.fileObj[0][i]);
         data.append('upload_preset', UPLOAD_PRESET);
         data.append('cloud_name', CLOUD_NAME);
 
@@ -57,6 +61,7 @@ export class FileLoaderGallery2 extends Component {
           
             //const data2 = await response.json()
             .catch(err => console.log(err))
+          }
        
     }
     
