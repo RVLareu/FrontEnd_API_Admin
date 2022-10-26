@@ -67,7 +67,7 @@ const ViewPublication = () => {
 
                         <div className="form-group multi-preview">
                           {(props.Property.images || []).map(url => (
-                          <img src={url} alt="Preview" />
+                          <img src={url} alt="Preview" height="150" />
                           ))}
                        </div>
                         <br />

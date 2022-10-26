@@ -99,7 +99,7 @@ export class FileLoaderGallery2 extends Component {
                   <Logo/>
                   <div className="form-group multi-preview">
                       {(this.fileArray || []).map(url => (
-                          <img src={url} alt="Preview" />
+                          <img src={url} alt='preview' height="100"/>
                       ))}
                   </div>
                   <div className="form-group">

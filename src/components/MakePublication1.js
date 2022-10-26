@@ -154,6 +154,7 @@ const MakePublication = () => {
                     <form class="custom" onSubmit={handleSubmit}>
 
                         <br />
+                        <Link to="/fileLoaderGallery2">Cargar Fotos</Link>
 
 
                         <label htmlFor="titulo">
@@ -187,9 +188,6 @@ const MakePublication = () => {
                         <br />
 
                         <h2>Ingrese los datos de la propiedad</h2>
-
-                        <br />
-                        <Link to="/fileLoader">Cargar Fotos</Link>
 
                         <label htmlFor="direccion">
                             Direccion:

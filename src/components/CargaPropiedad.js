@@ -59,15 +59,15 @@ const CargaPropiedad = () => {
             urls = window.localStorage.getItem("urls")
             
             for (const i in urls) {
-               links.push({'link': urls[i]}
-               )
-            }
+               links.push({'link': urls[i]})
+               }
+            
             
             const response = await axios.post('/createProperty',
                 JSON.stringify({
-                    'direction': direccion,'province': provincia,  'location': localidad,
+                    'direction': direccion, 'province': provincia,  'location': localidad,
                     'country': pais, 'toilets': banios, 'rooms': habitaciones, 'people': personas, 'description': descripcion,
-                    "images": links, 'email_user': username
+                    "images":  links, 'email_user': username
                 }),
                 {
                     headers: { 'Content-Type': 'application/json' }
