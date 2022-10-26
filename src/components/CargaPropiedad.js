@@ -67,7 +67,7 @@ const CargaPropiedad = () => {
                 JSON.stringify({
                     'direction': direccion,'province': provincia,  'location': localidad,
                     'country': pais, 'toilets': banios, 'rooms': habitaciones, 'people': personas, 'description': descripcion,
-                    'images': links, 'email_user': username
+                    "images": links, 'email_user': username
                 }),
                 {
                     headers: { 'Content-Type': 'application/json' }

@@ -65,7 +65,11 @@ const ViewPublication = () => {
 
                     <h2>Datos de la publicación</h2>
 
-
+                        <div className="form-group multi-preview">
+                          {(props.Property.images || []).map(url => (
+                          <img src={url} alt="Preview" />
+                          ))}
+                       </div>
                         <br />
 
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
