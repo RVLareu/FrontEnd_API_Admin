@@ -102,22 +102,8 @@ const MakePublication = () => {
 
         );
 
-            
-           
-
-
-
-
             //const params = new URLSearchParams();
             //params.append('property_id', id_property)
-
-            
-
-          
-
-
-
-
 
             setSuccess(true);
 
@@ -160,7 +146,7 @@ const MakePublication = () => {
                         <br />
                         <Link to="/fileLoaderGallery2">Cargar Fotos</Link>
 
-
+                        <br />
                         <label htmlFor="titulo">
                             Titulo:
 

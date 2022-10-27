@@ -19,7 +19,7 @@ export class FileLoaderGallery2 extends Component {
     static contextTypes = {
        router: () => true,
        }
-
+       
     fileObj = [];
     fileArray = [];
 
@@ -31,6 +31,7 @@ export class FileLoaderGallery2 extends Component {
         this.state = {
             file: [null]
         }
+        
         this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this)
         this.uploadFiles = this.uploadFiles.bind(this)
     }
@@ -88,8 +89,9 @@ export class FileLoaderGallery2 extends Component {
         this.setState({ file: this.fileArray })
     }
    
-    uploadFiles(e) {
+    uploadFiles (e) {
         e.preventDefault()
+        e.currentTarget.disabled = true
         this.upload()
         console.log(this.state.file)
         window.localStorage.setItem("username", this.email_user)
@@ -111,7 +113,8 @@ export class FileLoaderGallery2 extends Component {
                     <div className="form-group">
                         <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
                     </div>
-                    <button onClick={this.uploadFiles}>Upload</button>
+                    <button onClick={this.uploadFiles}>Cargar fotos</button>
+                    <br />
                     <a href="/makePublication" onClick="windows.history.go(-1); return false;">Volver</a>
             </section>
         )
