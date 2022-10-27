@@ -36,7 +36,7 @@ const UpdatePublications = () => {
     const [id_property, setPropertyID] = useState(parse_properties.id);
     const [id_publication, setPublicationID] = useState(parse_publication.id);
     const [titulo, setTitle] = useState(parse_publication.title);
-    const [descripcion, setDescripcion] = useState(parse_publication.description);
+    const [descrPubl, setDescrPubl] = useState(parse_publication.description);
     const [email_user, setEmail] = useState(parse_publication.email_user);
     const [precio, setPrecio] = useState(parse_publication.price);
     const [errMsg, setErrMsg] = useState('');
@@ -50,8 +50,7 @@ const UpdatePublications = () => {
     const [habitaciones, setHabitaciones] = useState(parse_properties.rooms);
     const [banios, setBanios] = useState(parse_properties.toilets);
     const [personas, setPersonas] = useState(parse_properties.people);
-    let [foto, setFoto] = useState('');
-
+    const [descrProp, setDescrProp] = useState(parse_properties.description);
 
 
     const handleSubmit = async (e) => {
@@ -71,7 +70,15 @@ const UpdatePublications = () => {
         try {
             setEmail(username)
             console.log(username)
-
+            
+            const urls = [];
+            const links = [];
+            
+            urls = window.localStorage.getItem("urls")
+            
+             for (const i in urls) {
+               links.push({'link': urls[i]})
+               }
 
             //const params = new URLSearchParams();
             //params.append('property_id', id_property)
@@ -79,7 +86,7 @@ const UpdatePublications = () => {
             const params = { publication_id: id_publication}
 
             const json = JSON.stringify({
-                'title': titulo, 'description': descripcion, 'price': precio, 'property_id': id_property, 'email_user': username
+                'title': titulo, 'description': descrPubl, 'price': precio, 'property_id': id_property, 'email_user': username
             })
 
             const headers = { 'Content-Type': 'application/json' }
@@ -93,7 +100,7 @@ const UpdatePublications = () => {
 
             const json_1 = JSON.stringify({
                 'direction': direccion,'province': provincia,  'location': localidad,
-                'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'link': foto, 'email_user': username}
+                'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descrProp, 'links': links, 'email_user': username}
             )
 
             
@@ -147,6 +154,9 @@ const UpdatePublications = () => {
 
                         <br />
 
+                        <Link to="/fileLoaderGallery2">Cargar Fotos</Link>
+
+                        <br />
 
                         <label htmlFor="titulo">
                             Titulo:
@@ -158,22 +168,33 @@ const UpdatePublications = () => {
                             onChange={(e) => setTitle(e.target.value)}
                             value={titulo}
                             required
-
                         />
-
-
+                        
+                        
+                        <label htmlFor="descrProp">
+                            Descripcion:
+                        </label>
+                        
+                        <input
+                            type="text"
+                            id="descrPubl"
+                            onChange={(e) => setDescrPubl(e.target.value)}
+                            value={descrPubl}
+                            required
+                        />
+                        
+                        <br/>
                        
                         <label htmlFor="precio">
                             Precio:
-
                         </label>
+                        
                         <input
                             type="text"
                             id="precio"
                             onChange={(e) => setPrecio(e.target.value)}
                             value={precio}
                             required
-
                         />
 
                         <br />
@@ -185,28 +206,26 @@ const UpdatePublications = () => {
 
                         <label htmlFor="direccion">
                             Direccion:
-
                         </label>
+                        
                         <input
                             type="text"
                             id="direccion"
                             onChange={(e) => setDireccion(e.target.value)}
                             value={direccion}
                             required
-
                         />
 
                         <label htmlFor="provincia">
                             Provincia:
-
                         </label>
+                        
                         <input
                             type="text"
                             id="provincia"
                             onChange={(e) => setProvincia(e.target.value)}
                             value={provincia}
                             required
-
                         />
 
 
@@ -308,15 +327,15 @@ const UpdatePublications = () => {
                             </FormControl>
                         </Box>
 
-                        <label htmlFor="descripcion">
+                        <label htmlFor="descrProp">
                             Descripcion:
 
                         </label>
                         <input
                             type="text"
-                            id="descripcion"
-                            onChange={(e) => setDescripcion(e.target.value)}
-                            value={descripcion}
+                            id="descrProp"
+                            onChange={(e) => setDescrProp(e.target.value)}
+                            value={descrProp}
                             required
 
                         />

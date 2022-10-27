@@ -36,7 +36,7 @@ const MakePublication = () => {
     const [id_property, setPropertyID] = useState('');
     const [id_publication, setPublicationID] = useState('');
     const [titulo, setTitle] = useState('');
-    const [descripcion, setDescripcion] = useState('');
+    const [descrPubl, setDescrPubl] = useState('');
     const [email_user, setEmail] = useState('');
     const [precio, setPrecio] = useState('');
     const [errMsg, setErrMsg] = useState('');
@@ -51,6 +51,7 @@ const MakePublication = () => {
     const [banios, setBanios] = useState('');
     const [personas, setPersonas] = useState('');
     const [images, setImages] = useState('');
+    const [descrProp, setDescrProp] = useState('');
 
 
 
@@ -69,20 +70,22 @@ const MakePublication = () => {
         }
 
         try {
+            setEmail(username)
+            console.log(username)
+        
             const urls = [];
             const links = [];
+            
+            urls = window.localStorage.getItem("urls")
             
              for (const i in urls) {
                links.push({'link': urls[i]})
                }
 
-            setEmail(username)
-            console.log(username)
-            urls = window.localStorage.getItem("urls")
             const response = await axios.post('/createProperty',
                 JSON.stringify({
                     'direction': direccion,'province': provincia,  'location': localidad,
-                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descripcion, 'links': links, 'email_user': username
+                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descrProp, 'images': links, 'email_user': username
                 }),
                 {
                     headers: { 'Content-Type': 'application/json' }
@@ -94,13 +97,13 @@ const MakePublication = () => {
             
             const response_2 = await axios.post('/createPublication',
             JSON.stringify({
-                'title': titulo, 'description': descripcion, 'price': precio, 'property_id': response.data.id, 'email_user': username
+                'title': titulo, 'description': descrPubl, 'price': precio, 'property_id': response.data.id, 'email_user': username
             }),
             {
                 headers: { 'Content-Type': 'application/json' }
             },
 
-        );
+          );
 
             //const params = new URLSearchParams();
             //params.append('property_id', id_property)
@@ -159,6 +162,21 @@ const MakePublication = () => {
                             required
 
                         />
+                        
+                        <label htmlFor="descrPubl">
+                            Descripcion:
+
+                        </label>
+                        <input
+                            type="text"
+                            id="descrPubl"
+                            onChange={(e) => setDescrPubl(e.target.value)}
+                            value={descrPubl}
+                            required
+
+                        />
+
+                        <br/>
 
 
                        
@@ -304,15 +322,15 @@ const MakePublication = () => {
                             </FormControl>
                         </Box>
 
-                        <label htmlFor="descripcion">
+                        <label htmlFor="descrProp">
                             Descripcion:
 
                         </label>
                         <input
                             type="text"
-                            id="descripcion"
-                            onChange={(e) => setDescripcion(e.target.value)}
-                            value={descripcion}
+                            id="descrProp"
+                            onChange={(e) => setDescrProp(e.target.value)}
+                            value={descrProp}
                             required
 
                         />

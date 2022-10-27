@@ -9,6 +9,7 @@ import UpdateData from './UpdateData';
 import axios from '../api/axios';
 import swal from 'sweetalert2';
 import {Image} from "@mui/icons-material";
+import { useRef, useState, useEffect } from "react";
 
 
 const DELETE_PUBLICATION_URL = '/deletePublication/';
@@ -88,6 +89,34 @@ const deletePublication = async (props, username, updateFunction) => {
 
 export default function Cards(props) {
     let username = props.username
+
+//Solución provisoria
+    
+    const [images, setImages] = useState([]);
+
+
+    const loadImages = () => {
+      if (!username){
+        console.log("no autorizado")
+        //navigate("/login");
+        window.location.href = "/login";
+        return;
+      } 
+      const params = new URLSearchParams([['property_id', props.Publication.property_id]]);
+    
+      axios.post('/fetchAllPropertyImages/', {},{ params })
+      .then((response) => {
+        setImages(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
+
+  useEffect(() => {
+    loadImages();
+    }, []);
   
 
     return (
@@ -95,7 +124,7 @@ export default function Cards(props) {
       <Card variant="outlined" sx={{m:1}}>
         <React.Fragment>
           <CardContent>
-            <img alt="Preview" height="100" src={props.Property.images} />
+            <img alt="Preview" height="100" src={images[0].link} />
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {props.Publication.title}
             </Typography>
