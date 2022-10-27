@@ -23,7 +23,7 @@ const ViewPublication = () => {
     let props = window.localStorage.getItem("view_publication")
     let parse_publication = (JSON.parse(props)).Publication
     let parse_properties = (JSON.parse(props)).Property
-    let parse_images = (JSON.parse(props)).Image
+    
     //console.log(props)
     
     
@@ -56,7 +56,36 @@ const ViewPublication = () => {
     const [habitaciones, setHabitaciones] = useState(parse_properties.rooms);
     const [banios, setBanios] = useState(parse_properties.toilets);
     const [personas, setPersonas] = useState(parse_properties.people);
-    const [images, setImages] = useState(parse_images.link);
+
+    
+    const [images, setImages] = useState([]);
+
+    let username = window.localStorage.getItem("username")
+
+
+    const loadImages = () => {
+      if (!username){
+        console.log("no autorizado")
+        //navigate("/login");
+        window.location.href = "/login";
+        return;
+      } 
+      const params = new URLSearchParams([['property_id', id_property]]);
+    
+      axios.post('/fetchAllPropertyImages/', {},{ params })
+      .then((response) => {
+        setImages(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
+
+
+  useEffect(() => {
+    loadImages();
+    }, []);
 
 
     return (
@@ -65,13 +94,16 @@ const ViewPublication = () => {
 
                     <h2>Datos de la publicación</h2>
 
-                    <img src={images} alt="Preview" height="150" />
-                        
-
                     <Typography sx={{ fontSize: 34 }} color="text.secondary" gutterBottom>
                         {titulo}
                     </Typography>
-                       
+
+                    <div className="form-group multi-preview">
+                      {(images || []).map(image => (
+                          <img src={image.link} alt='preview' height="150"/>
+                      ))}
+                    </div>
+
                     <Typography variant="h6" component="div">
                         {descripcion}
                     </Typography>
