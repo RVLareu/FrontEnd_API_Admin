@@ -12,7 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useParams } from 'react-router-dom'
 import { PrecisionManufacturing } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 
 
@@ -22,11 +22,12 @@ const ViewPublication = () => {
 
     let props = window.localStorage.getItem("view_publication")
     let parse_publication = (JSON.parse(props)).Publication
-    let parse_properties = JSON.parse(props).Property
+    let parse_properties = (JSON.parse(props)).Property
+    let parse_images = (JSON.parse(props)).Image
     //console.log(props)
     
     
-    const navigate = useNavigate();    
+    //const navigate = useNavigate();    
 
     //const userRef = useRef();
     //const errRef = useRef();
@@ -38,7 +39,7 @@ const ViewPublication = () => {
 
 
     /*Datos publicacion*/
-    /*const [id_property, setPropertyID] = useState(parse_properties.id);
+    const [id_property, setPropertyID] = useState(parse_properties.id);
     const [id_publication, setPublicationID] = useState(parse_publication.id);
     const [titulo, setTitle] = useState(parse_publication.title);
     const [descripcion, setDescripcion] = useState(parse_publication.description);
@@ -55,7 +56,7 @@ const ViewPublication = () => {
     const [habitaciones, setHabitaciones] = useState(parse_properties.rooms);
     const [banios, setBanios] = useState(parse_properties.toilets);
     const [personas, setPersonas] = useState(parse_properties.people);
-    let [foto, setFoto] = useState('');*/
+    const [images, setImages] = useState(parse_images.link);
 
 
     return (
@@ -64,63 +65,54 @@ const ViewPublication = () => {
 
                     <h2>Datos de la publicación</h2>
 
-                    <div className="form-group multi-preview">
-                        {(props.Property.images || []).map(url => (
-                        <img src={url} alt="Preview" height="150" />
-                        ))}
-                    </div>
-                    <br />
+                    <img src={images} alt="Preview" height="150" />
+                        
 
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        {props.Publication.title}
+                    <Typography sx={{ fontSize: 34 }} color="text.secondary" gutterBottom>
+                        {titulo}
                     </Typography>
                        
-                    <Typography variant="h5" component="div">
-                        {props.Publication.description}
+                    <Typography variant="h6" component="div">
+                        {descripcion}
                     </Typography>
             
                     <Typography variant="body2">
-                       {props.Publication.price}
+                       $ {precio}
                     </Typography>
 
                     <Typography variant="body2">
-                      {props.Publication.price}
-                    </Typography>
-                       
-           
-                    <Typography variant="body2">
-                      {props.Property.direction}
+                      {direccion}
                     </Typography>
 
                     <Typography variant="body2">
-                       {props.Property.province}
+                       {provincia}
                     </Typography>
                        
                     <Typography variant="body2">
-                       {props.Property.location}
+                       {localidad}
                     </Typography>
                        
                     <Typography variant="body2">
-                       {props.Property.country}
+                       {pais}
                      </Typography>
                        
                      <Typography variant="body2">
-                       {props.Property.toiletes}
+                       {banios} baños
                      </Typography>
                        
                      <Typography variant="body2">
-                       {props.Property.rooms}
+                       {habitaciones} habitaciones
                      </Typography>
                        
                      <Typography variant="body2">
-                       {props.Property.people}
+                       para {personas} personas
                      </Typography>
                        
                      <Typography variant="body2">
-                       {props.Property.description}
+                       {descripcion}
                      </Typography>
                        
-                     <button onClick={navigate(-1)}> Volver </button>
+                     <a href="/showsPublications" onClick="windows.history.go(-1); return false;">Volver</a>
 
                 </section>
     )
