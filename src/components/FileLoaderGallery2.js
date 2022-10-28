@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { Link, Route, useNavigate, BrowserRouter, BrowserRouter as Router, Redirect, Switch} from "react-router-dom";
 import Logo from '../components/Logo';
-
+import GoBack from '../components/GoBack';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -22,8 +22,10 @@ export class FileLoaderGallery2 extends Component {
        
     fileObj = [];
     fileArray = [];
-
+    
     email_user = window.localStorage.getItem("username");
+    
+    //browserHistory = ReactRouter.browserHistory;
     
     constructor(props) {
         super(props)
@@ -35,23 +37,13 @@ export class FileLoaderGallery2 extends Component {
         this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this)
         this.uploadFiles = this.uploadFiles.bind(this)
     }
-    
-    handleBack = () => {
-       this.props.history.goBack()
-      }
-    
-    
+  
+   
     upload = async () => {
 
        const CLOUD_NAME = 'dwx9rqfjh';
        const UPLOAD_PRESET = 'z87owhgv';
        const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
-
-       //const [file, setFile] = useState("");
-       //const [url, setUrl] = useState("");
- 
-       //const [success, setSuccess] = useState(false);
-       //const navigate = useNavigate();
 
 
         const data = new FormData();
@@ -88,35 +80,37 @@ export class FileLoaderGallery2 extends Component {
         }
         this.setState({ file: this.fileArray })
     }
-   
+    
+    
     uploadFiles (e) {
         e.preventDefault()
         e.currentTarget.disabled = true
         this.upload()
         console.log(this.state.file)
-        window.localStorage.setItem("username", this.email_user)
-        
+
     }
     
    
-    render() {
-   
+    render() { 
         return (
                 <section style={{ backgroundColor: 'grey' }}>
                   <Logo/>
+                  
                   <div className="form-group multi-preview">
                       {(this.fileArray || []).map(url => (
                           <img src={url} alt='preview' height="100"/>
                       ))}
                   </div>
                   
-                    <div className="form-group">
+                  <div className="form-group">
                         <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
-                    </div>
-                    <button onClick={this.uploadFiles}>Cargar fotos</button>
-                    <br />
-                    <a href="/makePublication" onClick="windows.history.go(-1); return false;">Volver</a>
-            </section>
+                  </div>
+                  
+                  <button onClick={this.uploadFiles}>Cargar fotos</button>
+                  
+                  <GoBack/>
+                    
+                </section>
         )
     }
 }
