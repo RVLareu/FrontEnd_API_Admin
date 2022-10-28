@@ -94,7 +94,6 @@ export default function Cards(props) {
     
     const [images, setImages] = useState([]);
 
-
     const loadImages = () => {
       if (!username){
         console.log("no autorizado")
@@ -111,20 +110,21 @@ export default function Cards(props) {
       .catch((error) => {
         console.log(error);
       });
+      
     }
-
-
+    
+  
   useEffect(() => {
     loadImages();
     }, []);
   
-
     return (
-
+    
       <Card variant="outlined" sx={{m:1}}>
         <React.Fragment>
           <CardContent>
-            <img alt="Preview" height="100" src={images[0].link} />
+            <img alt="Preview" height="100" src={props.Image.link} />
+            
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {props.Publication.title}
             </Typography>
