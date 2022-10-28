@@ -93,6 +93,8 @@ export default function Cards(props) {
 //Solución provisoria
     
     const [images, setImages] = useState([]);
+    
+    const list = [];
 
     const loadImages = () => {
       if (!username){
@@ -113,6 +115,9 @@ export default function Cards(props) {
       
     }
     
+    images.map(item => {
+                  list.push(item.link)
+                })
   
   useEffect(() => {
     loadImages();
@@ -123,8 +128,11 @@ export default function Cards(props) {
       <Card variant="outlined" sx={{m:1}}>
         <React.Fragment>
           <CardContent>
-            <img alt="Preview" height="100" src={props.Image.link} />
             
+           <div sx={{display:'flex',flexWrap: 'wrap' }}>
+                  <img alt="Preview" height="100" src={list[0]} />
+           </div>
+             
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {props.Publication.title}
             </Typography>
