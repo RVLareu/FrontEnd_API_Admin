@@ -100,7 +100,7 @@ const ViewPublication = () => {
 
                     <div className="form-group multi-preview">
                       {(images || []).map(image => (
-                          <img src={image.link} alt='preview' height="150"/>
+                          <img src={image.link} alt='preview' height="200"/>
                       ))}
                     </div>
 

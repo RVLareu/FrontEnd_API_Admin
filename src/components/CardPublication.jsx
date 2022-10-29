@@ -130,13 +130,13 @@ export default function Cards(props) {
           <CardContent>
             
            <div sx={{display:'flex',flexWrap: 'wrap' }}>
-                  <img alt="Preview" height="100" src={list[0]} />
+                  <img alt="Preview" height="150" src={list[0]} />
            </div>
              
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
               {props.Publication.title}
             </Typography>
-            <Typography variant="h5" component="div">
+            <Typography variant="h6" component="div">
               {props.Publication.description}
             </Typography>
             
