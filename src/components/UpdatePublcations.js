@@ -72,14 +72,25 @@ const UpdatePublications = () => {
             console.log(username)
             
             const urls = [];
-            const links = [];
+            //const links = [];
             
-            urls = window.localStorage.getItem("urls")
+            const result = JSON.parse(sessionStorage.getItem("urls"))
             
-             for (const i in urls) {
-               links.push({'link': urls[i]})
-               }
-
+            let array = []
+            let links = []; 
+            
+            const data = new FormData();
+            let i = 0
+             
+              
+            result.map((item) => { 
+                                  links[i] = {link: item } ;    
+                                  i++
+                                  })
+            
+              
+            console.log("Respuesta")
+            console.log(links)
             //const params = new URLSearchParams();
             //params.append('property_id', id_property)
 
