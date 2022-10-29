@@ -55,8 +55,8 @@ const MakePublication = () => {
     const [descrProp, setDescrProp] = useState('');
 
     const [urls, setUrls] = useState([]);
-    const [links, setLinks] = useState([]);
-    //const links = []; 
+    //const [links, setLinks] = useState([]);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -78,32 +78,33 @@ const MakePublication = () => {
         
             
             //setUrls((window.localStorage.getItem("urls")))
-            const result = (sessionStorage.getItem("urls"))
-            setUrls(result)
-            let array = []
-
-            console.log(result.lenght)
+            const result = JSON.parse(sessionStorage.getItem("urls"))
             
-             for (const i=0; i<result.lenght; i++) {
-               
-               const text = ('{"link":' + result+'}')
-               
-               array.push(text)
-               console.log(text)
-               
-              }
+            let array = []
+            let links = []; 
+            
+            const data = new FormData();
+            let i = 0
+             
               
-            //setLinks(array)
+            result.map((item) => { 
+                                  links[i] = {link: item } ;    
+                                  i++
+                                  })
+            
+              
             console.log("Respuesta")
-            console.log(result)
+            console.log(links)
 
             const response = await axios.post('/createProperty',
                 JSON.stringify({
-                    'direction': direccion,'province': provincia,  'location': localidad,
-                    'country': pais, 'toilets': banios, 'rooms': habitaciones, 'people': personas, 'description': descrProp, 'images': links, 'email_user': username
+                    "direction": direccion,"province": provincia,  "location": localidad,
+                    "country": pais, "toilets": banios, "rooms": habitaciones, "people": personas, "description": descrProp, 'images': links, "email_user": username
                 }),
                 {
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: { 'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*"
+                     }
                 },
 
             );
@@ -115,7 +116,9 @@ const MakePublication = () => {
                 'title': titulo, 'description': descrPubl, 'price': precio, 'property_id': response.data.id, 'email_user': username
             }),
             {
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*"
+                     }
             },
 
           );

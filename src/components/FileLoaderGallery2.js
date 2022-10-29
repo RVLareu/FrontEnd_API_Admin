@@ -61,12 +61,12 @@ export class FileLoaderGallery2 extends Component {
                {method: "POST",
                    body: data})
                .then(async result => result.json())
-               .then(async result => {this.state.array.push(result.url)})
+               .then(async result => {this.state.array.push(result.secure_url)})
                
                .catch(err => console.log(err))
              }
              
-        sessionStorage.setItem("urls",  this.state.array);
+        sessionStorage.setItem("urls",  JSON.stringify(this.state.array));
 
        
     }
