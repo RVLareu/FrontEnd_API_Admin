@@ -45,11 +45,8 @@ const LoginPage = () => {
             //setAuth({ user, pwd, roles, accessToken });
 
             window.localStorage.setItem("username", user)
-            //window.location.href = from;
-            
-            setUser('');
-            setPwd('');
-            navigate(from, { replace: true });
+            //navigate(from, { replace: true });
+            window.location.href = from;
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('El servidor no responde');

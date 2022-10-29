@@ -63,19 +63,19 @@ const Profile = () => {
         <b ><DescriptionOutlined style={{transform: "translate(0px, 7px)"}}/> Biografía: </b> <span> {profileData.bio || "sin completar"}</span> 
       </Typography>
 
-      <Divider component="body1" sx={{width: "100%"}}/>
+      <Divider  sx={{width: "100%"}}/>
 
       <Typography sx={{width: '100%', padding: '0 20px 0 20px'}} variant="body2" gutterBottom>
         <b><WorkOutline style={{transform: "translate(0px, 7px)"}}/> Ocupación: </b> <span>{profileData.ocupation || "sin completar"}</span> 
       </Typography>
 
-      <Divider component="body1" sx={{width: "100%"}}/>
+      <Divider sx={{width: "100%"}}/>
 
       <Typography sx={{width: '100%', padding: '0 20px 0 20px'}} variant="body2" gutterBottom>
         <b ><LocationOnOutlined style={{transform: "translate(0px, 7px)"}}/> Ubicación: </b> <span>{profileData.location || "sin completar"}</span> 
       </Typography>
 
-      <Divider component="body1" sx={{width: "100%"}}/>
+      <Divider sx={{width: "100%"}}/>
      
       
 
