@@ -83,7 +83,7 @@ const EditProfile = () => {
 
     axios.put('/updateProfile/', JSON.stringify(body),{headers: headers})
     .then((response) => {
-      swal.fire({title:"Exito", text: "Perfil actualizado exitosamente", icon:"success"}).then(() => {navigate("/profile")})
+      swal.fire({title:"Exito", text: "Perfil actualizado exitosamente", icon:"success"}).then(() => {window.location.href = "/profile"})
     })
     .catch((error) => {
       console.log(error);
