@@ -78,7 +78,7 @@ const deletePublication = async (props, username, updateFunction) => {
         });
       }
 
-      window.location.href="/showPublication"
+      window.location.href="/showsPublications"
       
       }
     )

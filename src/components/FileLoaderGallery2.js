@@ -31,7 +31,8 @@ export class FileLoaderGallery2 extends Component {
         super(props)
             
         this.state = {
-            file: [null]
+            file: [null],
+            array: []
         }
         
         this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this)
@@ -55,21 +56,18 @@ export class FileLoaderGallery2 extends Component {
            data.append('upload_preset', UPLOAD_PRESET);
            data.append('cloud_name', CLOUD_NAME);
            
-           urls[i]=this.fileObj[0][i];
 
-           fetch(cloudinaryUrl,
+           await fetch(cloudinaryUrl,
                {method: "POST",
                    body: data})
-               .then(resp => resp.json())
-               //.then(data => {
-               //    setUrl(data.url)})
-               //.then(setSuccess(true))
-          
-               //const data2 = await response.json()
+               .then(async result => result.json())
+               .then(async result => {this.state.array.push(result.url)})
+               
                .catch(err => console.log(err))
              }
              
-           window.localStorage.setItem("urls",  urls);  
+        sessionStorage.setItem("urls",  this.state.array);
+
        
     }
     

@@ -18,13 +18,14 @@ const PROPERTYHANDLER_URL = '/updateProperty/';
 const MakePublication = () => {
 
 
-    let props = window.localStorage.getItem("update_publication")
-    let parse_publication = (JSON.parse(props)).Publication
-    let parse_properties = JSON.parse(props).Property
-    console.log(props)
+    //let props = window.localStorage.getItem("update_publication")
+    //let parse_publication = (JSON.parse(props)).Publication
+    //let parse_properties = JSON.parse(props).Property
+    //console.log(props)
 
     const userRef = useRef();
     const errRef = useRef();
+    
     /*Este es el parametro id que recupero de props/*/
 
 
@@ -53,7 +54,9 @@ const MakePublication = () => {
     const [images, setImages] = useState('');
     const [descrProp, setDescrProp] = useState('');
 
-
+    const [urls, setUrls] = useState([]);
+    const [links, setLinks] = useState([]);
+    //const links = []; 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,19 +76,31 @@ const MakePublication = () => {
             setEmail(username)
             console.log(username)
         
-            const urls = [];
-            const links = [];
             
-            urls = window.localStorage.getItem("urls")
+            //setUrls((window.localStorage.getItem("urls")))
+            const result = (sessionStorage.getItem("urls"))
+            setUrls(result)
+            let array = []
+
+            console.log(result.lenght)
             
-             for (const i in urls) {
-               links.push({'link': urls[i]})
-               }
+             for (const i=0; i<result.lenght; i++) {
+               
+               const text = ('{"link":' + result+'}')
+               
+               array.push(text)
+               console.log(text)
+               
+              }
+              
+            //setLinks(array)
+            console.log("Respuesta")
+            console.log(result)
 
             const response = await axios.post('/createProperty',
                 JSON.stringify({
                     'direction': direccion,'province': provincia,  'location': localidad,
-                    'country': pais, 'toilets': banios, 'rooms':habitaciones, 'people': personas, 'description': descrProp, 'images': links, 'email_user': username
+                    'country': pais, 'toilets': banios, 'rooms': habitaciones, 'people': personas, 'description': descrProp, 'images': links, 'email_user': username
                 }),
                 {
                     headers: { 'Content-Type': 'application/json' }
@@ -93,7 +108,7 @@ const MakePublication = () => {
 
             );
             
-         
+             
             
             const response_2 = await axios.post('/createPublication',
             JSON.stringify({
@@ -126,7 +141,6 @@ const MakePublication = () => {
     }
 
 
-
     return (
         <>
             {success ? (
@@ -150,6 +164,8 @@ const MakePublication = () => {
                         <Link to="/fileLoaderGallery2">Cargar Fotos</Link>
 
                         <br />
+                        
+                       
                         <label htmlFor="titulo">
                             Titulo:
 
