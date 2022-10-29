@@ -96,7 +96,7 @@ const RegisterPage = () => {
                     <Logo />
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Registrarse</h1>
-                    <form class="custom" onSubmit={handleSubmit}>
+                    <form className="custom" onSubmit={handleSubmit}>
                         <label htmlFor="username">
                             Nombre de usuario:
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />

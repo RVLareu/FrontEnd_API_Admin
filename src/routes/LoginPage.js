@@ -69,7 +69,7 @@ const LoginPage = () => {
             
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Ingresar</h1>
-            <form class="custom" onSubmit={handleSubmit}>
+            <form className="custom" onSubmit={handleSubmit}>
                 <label htmlFor="username">Nombre de usuario:</label>
                 <input
                     type="text"

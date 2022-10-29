@@ -113,7 +113,7 @@ const UpdateData = () => {
                     <Logo/>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Ingrese los datos de la propiedad</h1>
-                    <form class="custom" onSubmit={handleSubmit}>
+                    <form className="custom" onSubmit={handleSubmit}>
 
                         <br />
                         <Link to="/fileLoader">Cargar Fotos</Link>
