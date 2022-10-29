@@ -5,6 +5,8 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import axios from '../api/axios';
+
 import { Logout } from '@mui/icons-material';
 import { Avatar, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { useNavigate } from "react-router-dom";
@@ -13,6 +15,20 @@ import { useNavigate } from "react-router-dom";
 export default function UserMenu({username}) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+
+  const [imageUrl, setImageUrl] = React.useState(null);
+
+  if (!imageUrl){
+    const params = new URLSearchParams([['user_email', username]]);
+
+    axios.get('/getProfile/',{ params: params })
+    .then((response) => {
+        setImageUrl(response.data.pic);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   const navigate = useNavigate();
 
@@ -67,7 +83,7 @@ export default function UserMenu({username}) {
             <ListItemIcon>
                 <Avatar
                     alt={username.toLocaleUpperCase()}
-                    src={ /*profileData.pic ||*/""}
+                    src={ imageUrl  || ""}
                 />          
             </ListItemIcon>
             {/* <ListItemText primary={username} /> */}
