@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom'
 import { PrecisionManufacturing } from "@mui/icons-material";
 //import { useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
+import { Button } from "@mui/material";
 
 
 
@@ -144,7 +145,7 @@ const ViewPublication = () => {
                        {descripcion}
                      </Typography>
                        
-                     <a href="/showsPublications" onClick="windows.history.go(-1); return false;">Volver</a>
+                     <Button variant="filled" color="primary" onClick={() => {window.history.go(-1);return false;}}>Volver</Button>
 
                 </section>
     )

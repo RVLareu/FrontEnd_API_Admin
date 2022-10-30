@@ -37,11 +37,6 @@ section {
     background-color: black;
 }
 
-a, a:visited {
-    color: #fff;
-}
-
-
 
 button {
   padding: 0.5rem;
@@ -115,3 +110,7 @@ form.custom {
 .custom button.custom {
   margin-top: 1rem;
 } 
+
+.custom a, .custom a:visited {
+    color: #fff;
+}

@@ -36,7 +36,7 @@ const Home = () => {
             <Logo />
             <p>Estas logueado como {username}</p>
             <br />
-            <Link to="/showsPublications">Mis publicaciones</Link>
+            <Link to="/showsMyPublications">Mis publicaciones</Link>
             <br />
             <Link to="/admin">Ir a seccion casero </Link>
             <br />
