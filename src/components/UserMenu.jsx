@@ -23,10 +23,13 @@ export default function UserMenu({username}) {
 
     axios.get('/getProfile/',{ params: params })
     .then((response) => {
+        console.log(response);
         setImageUrl(response.data.pic);
     })
     .catch((error) => {
-      console.log(error);
+      if (error.status === 400) { // el user guardado en el localstore ya no existe por lo que se borra y se pide iniciar de vuelta
+        cerrarSesion();
+      }
     });
   }
 
