@@ -23,7 +23,7 @@ import MakePublication from './components/MakePublication';
 import ShowsPublications from './routes/ShowsPublications';
 import UpdatePublications from './components/UpdatePublcations';
 import ViewPublication from './components/ViewPublcation';
-
+import MakeReservation from './components/MakeReservation';
 
 
 const ROLES = {
@@ -60,6 +60,7 @@ function App() {
       <Route path="showsPublications"  element={<ShowsPublications />}/>
       <Route path="updatePublications/" element={<UpdatePublications/>} />
       <Route path="viewPublication/" element={<ViewPublication/>} />
+      <Route path="makeReservation/" element={<MakeReservation/>} />
       <Route path="profile/edit" element={<EditProfile />} />
 
       
