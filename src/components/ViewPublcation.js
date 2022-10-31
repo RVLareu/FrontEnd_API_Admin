@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { Link } from "react-router-dom";
 import Logo from '../components/Logo';
-
+import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -82,6 +82,11 @@ const ViewPublication = () => {
     }
 
 
+   const makeReservation = async (props) => {
+     window.localStorage.setItem("make_reservation", JSON.stringify (props))
+     window.location.href="/makeReservation/"
+    }
+
 
   useEffect(() => {
     loadImages();
@@ -143,6 +148,8 @@ const ViewPublication = () => {
                      <Typography variant="body2">
                        {descripcion}
                      </Typography>
+                     
+                     <Button variant="contained" onClick={()=>{makeReservation(props)}} color="success">Realizar reserva</Button>
                        
                      <a href="/showsPublications" onClick="windows.history.go(-1); return false;">Volver</a>
 
