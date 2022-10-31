@@ -43,8 +43,8 @@ const MakeReservation = () => {
     
     const [id_publication, setPublicationID] = useState(parse_publication.id);
     const [email_user, setEmail] = useState('');
-    const [fechaInicio, setFechaInicio] = useState(new Moment().format("YYYY-MM-DD"));
-    const [fechaFin, setFechaFin] = useState(new Moment().format("YYYY-MM-DD"));
+    const [fechaInicio, setFechaInicio] = useState(new Moment().toDate());
+    const [fechaFin, setFechaFin] = useState(new Moment().toDate());
     //const [fechaInicio, setFechaInicio] = useState("");
     //const [fechaFin, setFechaFin] = useState("");
     
@@ -165,7 +165,7 @@ const MakeReservation = () => {
                           //minDate={subDays(new Date(), 0)}
                           selected={fechaInicio}
                           onSelect={setFechaInicio}
-                          onChange={(date) => {setFechaInicio(new Moment(date).format("YYYY-MM-DD"))}}
+                          onChange={(date) => {setFechaInicio(new Moment(date).toDate())}}
                           footer={footer}
                         />
 
@@ -184,7 +184,7 @@ const MakeReservation = () => {
                           mode="single"
                           selected={fechaFin}
                           onSelect={setFechaFin}
-                          onChange={(date) => {setFechaFin(new Moment(date).format("YYYY-MM-DD"))}}
+                          onChange={(date) => {setFechaFin(new Moment(date).toDate())}}
                           footer={footer}
                         />
 
