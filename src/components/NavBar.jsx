@@ -22,7 +22,7 @@ export default function ButtonAppBar() {
           </Typography>
         {(username) ? (<>
         <Button>
-            <Link style={{ textDecoration: 'none' }} to="/showsPublications">
+            <Link style={{ color:"white", textDecoration: 'none' }} to="/showsAllPublications">
                     Publicaciones
             </Link>
         </Button>
@@ -30,7 +30,7 @@ export default function ButtonAppBar() {
       : <></>}
 
           <IconButton>
-            <Link style={{ textDecoration: 'none' }} to="/">
+            <Link style={{color:"white", textDecoration: 'none' }} to="/">
               <Home/> 
             </Link>
           </IconButton>

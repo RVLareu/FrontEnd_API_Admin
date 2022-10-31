@@ -23,10 +23,13 @@ export default function UserMenu({username}) {
 
     axios.get('/getProfile/',{ params: params })
     .then((response) => {
+        console.log(response);
         setImageUrl(response.data.pic);
     })
     .catch((error) => {
-      console.log(error);
+      if (error.status === 400) { // el user guardado en el localstore ya no existe por lo que se borra y se pide iniciar de vuelta
+        cerrarSesion();
+      }
     });
   }
 
@@ -116,7 +119,7 @@ export default function UserMenu({username}) {
                   >
                     <MenuItem onClick={(e) => {navigate("profile"); handleClose(e)}}> Mi perfil</MenuItem>
                     <MenuItem onClick={(e) => {navigate("showLodgings"); handleClose(e)}}> Mis propiedades</MenuItem>
-                    <MenuItem onClick={(e) => {navigate("showsPublications"); handleClose(e)}}> Mis Publicaciones</MenuItem>
+                    <MenuItem onClick={(e) => {navigate("showsMyPublications"); handleClose(e)}}> Mis Publicaciones</MenuItem>
                     <MenuItem onClick={cerrarSesion}> <Logout style={{transform: "scaleX(-1)"}}/> Cerrar sesión</MenuItem>
                   </MenuList>
                 </ClickAwayListener>

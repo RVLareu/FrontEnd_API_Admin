@@ -20,10 +20,12 @@ import {FileLoader} from './components/FileLoader';
 import {FileLoaderGallery2} from './components/FileLoaderGallery2';
 import EditProfile from './routes/EditProfilePage';
 import MakePublication from './components/MakePublication';
-import ShowsPublications from './routes/ShowsPublications';
+import ShowsMyPublications from './routes/ShowsMyPublications';
 import UpdatePublications from './components/UpdatePublcations';
 import ViewPublication from './components/ViewPublcation';
 import MakeReservation from './components/MakeReservation';
+import ShowsAllPublications from './routes/ShowsAllPublications';
+
 
 
 const ROLES = {
@@ -57,7 +59,9 @@ function App() {
       <Route path="fileLoaderGallery2" element={<FileLoaderGallery2 />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="makePublication"  element={<MakePublication />}/>
-      <Route path="showsPublications"  element={<ShowsPublications />}/>
+      <Route path="showsMyPublications"  element={<ShowsMyPublications />}/>
+      <Route path="showsAllPublications"  element={<ShowsAllPublications />}/>
+
       <Route path="updatePublications/" element={<UpdatePublications/>} />
       <Route path="viewPublication/" element={<ViewPublication/>} />
       <Route path="makeReservation/" element={<MakeReservation/>} />

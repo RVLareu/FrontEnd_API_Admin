@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from '../api/axios';
-import Card from "../components/CardPublication";
+import CardMyPublication from "../components/CardMyPublication";
 import { Box, Button, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
 
-const ShowsPublications = () => {
+const ShowsMyPublications = () => {
 
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const ShowsPublications = () => {
       <Box sx={{display:'flex',flexWrap: 'wrap' }}>
         {publications.map(item => {
           return (
-              <Card key={item.id} {...item} username={username} updatePublications={loadPublications} />
+              <CardMyPublication key={item.id} {...item} username={username} updatePublications={loadPublications} />
           )}
         )}   
       </Box>
@@ -66,4 +66,4 @@ const ShowsPublications = () => {
   )
 }
 
-export default ShowsPublications
+export default ShowsMyPublications
