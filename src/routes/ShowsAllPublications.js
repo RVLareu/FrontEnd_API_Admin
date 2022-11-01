@@ -19,9 +19,9 @@ const ShowsAllPublications = () => {
       window.location.href = "/login";
       return;
     } 
-    const params = new URLSearchParams([['email_user', username]]);
+    const params = JSON.stringify({'email_user': username});
     
-    axios.post('/fetchAllUserPublications/', {},{ params })
+    axios.post('/publications/', {},{ params })
     .then((response) => {
       setPublications(response.data);
     })
