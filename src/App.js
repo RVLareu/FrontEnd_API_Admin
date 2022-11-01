@@ -25,6 +25,7 @@ import UpdatePublications from './components/UpdatePublcations';
 import ViewPublication from './components/ViewPublcation';
 import MakeReservation from './components/MakeReservation';
 import ShowsAllPublications from './routes/ShowsAllPublications';
+import ShowsMyReservations from './routes/ShowsMyReservations';
 
 
 
@@ -61,6 +62,7 @@ function App() {
       <Route path="makePublication"  element={<MakePublication />}/>
       <Route path="showsMyPublications"  element={<ShowsMyPublications />}/>
       <Route path="showsAllPublications"  element={<ShowsAllPublications />}/>
+      <Route path="showsMyReservations"  element={<ShowsMyReservations />}/>
 
       <Route path="updatePublications/" element={<UpdatePublications/>} />
       <Route path="viewPublication/" element={<ViewPublication/>} />
