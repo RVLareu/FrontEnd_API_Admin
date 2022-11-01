@@ -43,8 +43,8 @@ const MakeReservation = () => {
     
     const [id_publication, setPublicationID] = useState(parse_publication.id);
     const [email_user, setEmail] = useState('');
-    const [fechaInicio, setFechaInicio] = useState(new Moment().toDate());
-    const [fechaFin, setFechaFin] = useState(new Moment().toDate());
+    const [fechaInicio, setFechaInicio] = useState(new Date());
+    const [fechaFin, setFechaFin] = useState(new Date());
     //const [fechaInicio, setFechaInicio] = useState("");
     //const [fechaFin, setFechaFin] = useState("");
     
@@ -81,7 +81,7 @@ const MakeReservation = () => {
             
             const response = axios.post('/reserve',
                 JSON.stringify({
-                    "start_date": fechaInicio,"end_date": fechaFin,
+                    "start_date": format(fechaInicio, "yyyy-MM-dd"),"end_date": format(fechaFin, "yyyy-MM-dd"),
                     "email_user": username, 'publication_id': id_publication
                 }),
                 {
@@ -118,12 +118,12 @@ const MakeReservation = () => {
       parse_properties = JSON.parse(props).Property
     })*/
 
-    let footer = <p>Seleccione una fecha</p>;
+    let footer = <p>Seleccione una fecha</p>
             if (selected) {
-                footer = <p>You picked {format(selected, 'PP')}.</p>;
+                footer = <p>Se seleccionó {format(selected, 'yyyy-MM-dd')}.</p>;
              }
              if (selected1) {
-                footer = <p>You picked {format(selected1, 'PP')}.</p>;
+                footer = <p>Se seleccionó {format(selected1, 'yyyy-MM-dd')}.</p>;
              }
   
 
@@ -158,14 +158,13 @@ const MakeReservation = () => {
                         <br/>
                         
                         <DatePicker
-                          dateFormat="yyyy/MM/dd"
-                          format="yyyy/MM/dd"
+                          dateFormat="yyyy-MM-dd"
+                          format="yyyy-MM-dd"
                           value={fechaInicio}
-                          mode="single"
+                          //mode="single"
                           //minDate={subDays(new Date(), 0)}
                           selected={fechaInicio}
-                          onSelect={setFechaInicio}
-                          onChange={(date) => {setFechaInicio(new Moment(date).toDate())}}
+                          onChange={(date: Date) => {setFechaInicio(date)}}
                           footer={footer}
                         />
 
@@ -178,13 +177,12 @@ const MakeReservation = () => {
                         <br/>
                         
                         <DatePicker
-                          dateFormat="yyyy/MM/dd"
-                          format="yyyy/MM/dd"
+                          dateFormat="yyyy-MM-dd"
+                          format="yyyy-MM-dd"
                           value={fechaFin}
-                          mode="single"
+                          //mode="single"
                           selected={fechaFin}
-                          onSelect={setFechaFin}
-                          onChange={(date) => {setFechaFin(new Moment(date).toDate())}}
+                          onChange={(date: Date) => {setFechaFin(date)}}
                           footer={footer}
                         />
 
