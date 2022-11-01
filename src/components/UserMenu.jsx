@@ -23,7 +23,6 @@ export default function UserMenu({username}) {
 
     axios.get('/getProfile/',{ params: params })
     .then((response) => {
-        console.log(response);
         setImageUrl(response.data.pic);
     })
     .catch((error) => {

@@ -30,8 +30,6 @@ const ShowsAllPublications = () => {
     });
   }
 
-
-
   useEffect(() => {
     loadPublications();
     }, []);
@@ -41,9 +39,10 @@ const ShowsAllPublications = () => {
     <>
     { (publications && publications.length > 0) ? 
       <Box sx={{display:'flex',flexWrap: 'wrap' }}>
-        {publications.map(item => {
+        {
+        publications.map(item => {
           return (
-              <CardPublication key={item.id} {...item} username={username} updatePublications={loadPublications} />
+              <CardPublication key={item.Publication.id} {...item} username={username} updatePublications={loadPublications} />
           )}
         )}   
       </Box>

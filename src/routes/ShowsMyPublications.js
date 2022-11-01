@@ -45,7 +45,7 @@ const ShowsMyPublications = () => {
       <Box sx={{display:'flex',flexWrap: 'wrap' }}>
         {publications.map(item => {
           return (
-              <CardMyPublication key={item.id} {...item} username={username} updatePublications={loadPublications} />
+              <CardMyPublication key={item.Publication.id} {...item} username={username} updatePublications={loadPublications} />
           )}
         )}   
       </Box>
