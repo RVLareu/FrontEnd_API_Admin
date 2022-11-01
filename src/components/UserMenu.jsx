@@ -27,7 +27,7 @@ export default function UserMenu({username}) {
         setImageUrl(response.data.pic);
     })
     .catch((error) => {
-      if (error.status === 400) { // el user guardado en el localstore ya no existe por lo que se borra y se pide iniciar de vuelta
+      if (error.response.status === 400) { // si es true el user guardado en el localstore ya no existe en el back, por lo que se borra y se pide iniciar de vuelta
         cerrarSesion();
       }
     });
