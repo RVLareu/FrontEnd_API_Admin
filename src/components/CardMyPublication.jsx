@@ -145,7 +145,7 @@ export default function CardMyPublication(props) {
             </Typography>
           </CardContent>
           <CardActions sx={{justifyContent:'center'}}>
-            {/* <Button variant="contained" onClick={()=>{viewPublication(props)}} color="success">Consultar</Button> */}
+            { <Button variant="contained" onClick={()=>{viewPublication(props)}} color="success">Consultar</Button> }
             <Button variant="contained" onClick={()=>{update(props)}} color="success">Modificar</Button>
             <Button variant="contained" onClick={()=>{deletePublication(props, username, props.updateLodgings)}} color="success">Eliminar</Button>
             

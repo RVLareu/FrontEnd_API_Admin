@@ -38,6 +38,8 @@ const Home = () => {
             <br />
             <Link to="/showsMyPublications">Mis publicaciones</Link>
             <br />
+            <Link to="/showsMyReservations">Mis reservas</Link>
+            <br />
             <Link to="/admin">Ir a seccion casero </Link>
             <br />
             <Link to="/linkpage">Ir a la seccion de enlaces</Link>

@@ -10,8 +10,17 @@ const ShowsMyReservations = () => {
   const navigate = useNavigate();
 
   const [reservations, setReservations] = useState(null);
+  const [publications, setPublications] = useState(null);
 
   let username = window.localStorage.getItem("username")
+  
+  
+  const viewPublication = async (props) => {
+    window.localStorage.setItem("view_publication", JSON.stringify (props))
+    window.localStorage.setItem("reservado", true)
+    window.location.href="/viewPublication/"
+  }
+  
   
   const cancelReservation = (reservation_id) => {
 
@@ -47,6 +56,14 @@ const ShowsMyReservations = () => {
     .catch((error) => {
       console.log(error);
     });
+    
+    axios.post('fetchAllUserPublications/', {},{ params })
+    .then((response) => {
+      setPublications(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
 
@@ -71,7 +88,7 @@ const ShowsMyReservations = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" onClick={() => alert("No implementado todavia")}>Ver publicación</Button>
+                <Button size="small" onClick={() => {viewPublication(publications.find(element => element.Publication.id === item.id))}}>Ver publicación</Button>
                 </CardActions>
                 <CardActions>
 

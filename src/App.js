@@ -63,7 +63,7 @@ function App() {
       <Route path="showsMyPublications"  element={<ShowsMyPublications />}/>
       <Route path="showsAllPublications"  element={<ShowsAllPublications />}/>
       <Route path="showsMyReservations"  element={<ShowsMyReservations />}/>
-
+      <Route path="showsMyReservations"  element={<ShowsMyReservations />}/>
       <Route path="updatePublications/" element={<UpdatePublications/>} />
       <Route path="viewPublication/" element={<ViewPublication/>} />
       <Route path="makeReservation/" element={<MakeReservation/>} />

@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom'
 import { PrecisionManufacturing } from "@mui/icons-material";
 //import { useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
-import { Button } from "@mui/material";
+import Button from '@mui/material/Button';
 
 
 
@@ -149,9 +149,11 @@ const ViewPublication = () => {
                        {descripcion}
                      </Typography>
                      
-                     <Button variant="contained" onClick={()=>{makeReservation(props)}} color="success">Realizar reserva</Button>
+                     <Button variant="contained" onClick={()=>{makeReservation(props)}} 
+                     disabled={window.localStorage.getItem("reservado")} color="success">Realizar reserva</Button>
                        
-                     <Button variant="filled" color="primary" onClick={() => {window.history.go(-1);return false;}}>Volver</Button>
+                     <Button variant="filled" color="primary" 
+                     onClick={() => {window.history.go(-1);return false;}}>Volver</Button>
 
                 </section>
     )

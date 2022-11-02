@@ -152,7 +152,7 @@ const MakePublication = () => {
                     <p>
                         <a href="/">Ir a la pagina principal</a>
                         <br />
-                        <a href="/showPublication">Ir a la pagina de publicaciones</a>
+                        <a href="/showsMyPublications">Ir a la pagina de publicaciones</a>
                     </p>
                 </section>
             ) : (

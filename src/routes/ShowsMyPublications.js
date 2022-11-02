@@ -12,6 +12,8 @@ const ShowsMyPublications = () => {
   const [publications, setPublications] = useState([]);
 
   let username = window.localStorage.getItem("username")
+  
+  window.localStorage.setItem("reservado", false)
     
   
   const loadPublications = () => {
