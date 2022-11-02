@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 
 
 
-const ViewPublication = memo(() => {
+const ViewPublication = (() => {
 
 
     let props = window.localStorage.getItem("view_publication")
@@ -47,7 +47,7 @@ const ViewPublication = memo(() => {
     const [precio, setPrecio] = useState(parse_publication.price);
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-    const [reservado, setReservado] = useState(false);
+    //const [reservado, setReservado] = useState(false);
     
     const [direccion, setDireccion] = useState(parse_properties.direction);
     const [localidad, setLocalidad] = useState(parse_properties.location);
@@ -62,7 +62,7 @@ const ViewPublication = memo(() => {
 
     let username = window.localStorage.getItem("username")
 
-    setReservado(window.localStorage.getItem("reservado"))
+    //setReservado(window.localStorage.getItem("reservado"))
 
     const loadImages = () => {
       if (!username){
@@ -93,15 +93,15 @@ const ViewPublication = memo(() => {
      window.location.href="/review/"
     }
     
-   const isReserved = memo(() => {
+   /*const isReserved = memo(() => {
       if(reservado) 
         return true;
       else
         return false;
-      })  
+      })  */
 
 
-  const useEffect = memo(() => {
+  useEffect(() => {
     loadImages();
     }, []);
 
@@ -163,10 +163,10 @@ const ViewPublication = memo(() => {
                      </Typography>
                      
                      <Button variant="contained" onClick={()=>{makeReservation(props)}} 
-                     disabled={reservado ? true: false} color="success">Realizar reserva</Button>
+                     disabled={false} color="success">Realizar reserva</Button>
                      
                      <Button variant="contained" onClick={()=>{calificar(props)}} 
-                     disabled={reservado ? false: true} color="success">Calificar</Button>
+                     disabled={true} color="success">Calificar</Button>
                      
                        
                      <Button variant="filled" color="primary" 

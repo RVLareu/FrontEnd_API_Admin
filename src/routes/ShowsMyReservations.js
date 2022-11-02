@@ -18,7 +18,7 @@ const ShowsMyReservations = () => {
   
   const viewPublication = async (props) => {
     window.localStorage.setItem("view_publication", JSON.stringify (props))
-    window.location.href="/viewPublication/"
+    window.location.href="/viewPublication2/"
   }
   
   

@@ -149,7 +149,7 @@ const Review = () => {
             />
 
                        
-                        <button onClick={() => {navigate(-1)}}> Volver </button>
+                        <button onClick={() => {navigate(-1)}}> Aceptar </button>
                     </form>
                 </section>
             )}
