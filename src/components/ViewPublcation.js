@@ -86,6 +86,11 @@ const ViewPublication = () => {
      window.localStorage.setItem("make_reservation", JSON.stringify (props))
      window.location.href="/makeReservation/"
     }
+    
+    const calificar = async (props) => {
+     window.localStorage.setItem("calificar", JSON.stringify (props))
+     window.location.href="/review/"
+    }
 
 
   useEffect(() => {
@@ -151,6 +156,10 @@ const ViewPublication = () => {
                      
                      <Button variant="contained" onClick={()=>{makeReservation(props)}} 
                      disabled={window.localStorage.getItem("reservado")} color="success">Realizar reserva</Button>
+                     
+                     <Button variant="contained" onClick={()=>{calificar(props)}} 
+                     disabled={!window.localStorage.getItem("reservado")} color="success">Calificar</Button>
+                     
                        
                      <Button variant="filled" color="primary" 
                      onClick={() => {window.history.go(-1);return false;}}>Volver</Button>
