@@ -14,10 +14,10 @@ const ShowsMyReservations = () => {
 
   let username = window.localStorage.getItem("username")
   
+  window.localStorage.setItem("reservado", true)
   
   const viewPublication = async (props) => {
     window.localStorage.setItem("view_publication", JSON.stringify (props))
-    window.localStorage.setItem("reservado", true)
     window.location.href="/viewPublication/"
   }
   
@@ -65,6 +65,7 @@ const ShowsMyReservations = () => {
       console.log(error);
     });
   }
+  
 
 
   return (

@@ -28,6 +28,8 @@ const Home = () => {
 
         navigate('/linkpage');
     }
+    
+    window.localStorage.setItem("reservado", false)
 
     return (
         <Paper className="custom" elevation={3} style={{ backgroundColor: 'grey', padding: '40px' }} >

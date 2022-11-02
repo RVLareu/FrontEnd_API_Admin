@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback, memo, useMemo } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 
 
 
-const ViewPublication = () => {
+const ViewPublication = memo(() => {
 
 
     let props = window.localStorage.getItem("view_publication")
@@ -47,7 +47,7 @@ const ViewPublication = () => {
     const [precio, setPrecio] = useState(parse_publication.price);
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-
+    const [reservado, setReservado] = useState(false);
     
     const [direccion, setDireccion] = useState(parse_properties.direction);
     const [localidad, setLocalidad] = useState(parse_properties.location);
@@ -62,6 +62,7 @@ const ViewPublication = () => {
 
     let username = window.localStorage.getItem("username")
 
+    setReservado(window.localStorage.getItem("reservado"))
 
     const loadImages = () => {
       if (!username){
@@ -91,9 +92,16 @@ const ViewPublication = () => {
      window.localStorage.setItem("calificar", JSON.stringify (props))
      window.location.href="/review/"
     }
+    
+   const isReserved = memo(() => {
+      if(reservado) 
+        return true;
+      else
+        return false;
+      })  
 
 
-  useEffect(() => {
+  const useEffect = memo(() => {
     loadImages();
     }, []);
 
@@ -155,10 +163,10 @@ const ViewPublication = () => {
                      </Typography>
                      
                      <Button variant="contained" onClick={()=>{makeReservation(props)}} 
-                     disabled={window.localStorage.getItem("reservado")} color="success">Realizar reserva</Button>
+                     disabled={reservado ? true: false} color="success">Realizar reserva</Button>
                      
                      <Button variant="contained" onClick={()=>{calificar(props)}} 
-                     disabled={!window.localStorage.getItem("reservado")} color="success">Calificar</Button>
+                     disabled={reservado ? false: true} color="success">Calificar</Button>
                      
                        
                      <Button variant="filled" color="primary" 
@@ -166,6 +174,6 @@ const ViewPublication = () => {
 
                 </section>
     )
-}
+})
 
 export default ViewPublication
