@@ -234,12 +234,12 @@ const MakePublication = () => {
                                     </Button>
                                 </Stack>
 
-                ) : (
+            ) : (           <Stack spacing={3}  direction="column" >
+                                <Typography variant="h6" gutterBottom component="div" color='#000'>
+                                    Ingrese los datos de la propiedad
+                                </Typography>
                                 <Stack direction="row" spacing={3} >
                                     <Stack direction="column" spacing={3} >
-                                        <Typography variant="h6" gutterBottom component="div" color='#000'>
-                                            Ingrese los datos de la propiedad
-                                        </Typography>
                                         <DropDownMenuLocation selected={provincia} setProvincia={setProvincia}/>
                                         <TextField
 
@@ -269,12 +269,8 @@ const MakePublication = () => {
                                             required
 
                                         />
-                                        <AddImagesModal setOpen={setOpen} handleOpen={handleOpen} open={open}/>
                                     </Stack>
                                     <Stack direction="column" spacing={3} >
-                                        <Typography variant="h6" gutterBottom component="div" color='#000'>
-                                            Ingrese los datos de la propiedad
-                                        </Typography>
                                         <DropDownMenuMakePublication values={[0,1,2,3,4,5,6,7]} name={'Baños'} setFunction={setBanios}/>
                                         <DropDownMenuMakePublication values={[0,1,2,3,4,5,6,7]} name={'Habitaciones'} setFunction={setHabitaciones}/>
                                         <DropDownMenuMakePublication values={[0,1,2,3,4,5,6,7]} name={'Personas'} setFunction={setPersonas}/>
@@ -292,6 +288,8 @@ const MakePublication = () => {
                                         </Button>                                    
                                     </Stack>
                                 </Stack>
+                                        <AddImagesModal setOpen={setOpen} handleOpen={handleOpen} open={open}/>
+                    </Stack>
 
                 )}               
 
