@@ -39,7 +39,7 @@ const Profile = () => {
 
 
   return (
-    <Paper sx={{width: 700, height: 600, display: 'flex', flexDirection:'column', alignItems:'center', textAlign: 'left'}}>
+    <Paper sx={{width: 700, height: 600, display: 'flex', flexDirection:'column', alignItems:'center', textAlign: 'left', mt: 10}}>
       {profileData ? <>
       <Avatar
         alt={username.toLocaleUpperCase()}
