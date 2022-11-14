@@ -32,6 +32,7 @@ const Home = () => {
     const [metrosCuadrados, setMetrosCuadrados] = useState([0, 100]);
     const [baños, setBaños] = useState([1, 10]);
     const [habitaciones, setHabitaciones] = useState([1, 10]);
+    const [provincia, setProvincia] = useState("");
 
     let username;
     if (!window.localStorage.getItem("username")) {
@@ -86,7 +87,7 @@ const Home = () => {
         <ThemeProvider theme={theme}>
             <Stack direction="row" spacing={10} sx={{mt:10}}> 
                 <Stack direction="column" spacing={3} sx={{flex:1 , ml: '3%', heigth: '100%', textAlign: 'left', justifyContent: 'space-between'}}>
-                    <DropDownMenuLocation/>
+                    <DropDownMenuLocation setProvincia={setProvincia}/>
                     <Typography color="black">
                         Precio por día
                     </Typography>

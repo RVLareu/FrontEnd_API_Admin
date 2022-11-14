@@ -16,8 +16,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useParams } from 'react-router-dom'
 import { PrecisionManufacturing } from "@mui/icons-material";
 import { Stack, Typography } from "@mui/material";
-
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import AddImagesModal from "../components/AddImagesModal";
+import DropDownMenuMakePublication from "./DropDownMakePublication";
 
 const PROPERTYHANDLER_URL = '/updateProperty/';
 
@@ -33,11 +33,12 @@ const theme = createTheme({
             main: '#e9bc65',
         } 
       },
-});
+}); 
 
 const MakePublication = () => {
+    const handleOpen = () => setOpen(true);
 
-
+    const [open, setOpen] = useState(false);
     //let props = window.localStorage.getItem("update_publication")
     //let parse_publication = (JSON.parse(props)).Publication
     //let parse_properties = JSON.parse(props).Property
@@ -92,9 +93,6 @@ const MakePublication = () => {
     const handleBackClick = () => {
         setListingInfo(true);
     }
-    const handleCreateClick = () => {
-        console.log("Creando publicacion");
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -133,8 +131,13 @@ const MakePublication = () => {
               
             console.log("Respuesta")
             console.log(links)
-
-            const response = await axios.post('/createProperty',
+            console.log("Respuesta", 
+            {
+                "direction": direccion,"province": provincia,  "location": localidad,
+                "country": pais, "toilets": banios, "rooms": habitaciones, "people": personas, "description": descrProp, 'images': links, "email_user": username
+            }
+            )
+            axios.post('/createProperty',
                 JSON.stringify({
                     "direction": direccion,"province": provincia,  "location": localidad,
                     "country": pais, "toilets": banios, "rooms": habitaciones, "people": personas, "description": descrProp, 'images': links, "email_user": username
@@ -145,21 +148,30 @@ const MakePublication = () => {
                      }
                 },
 
-            );
+            ).then((response) => {
+                console.log(response.data)
+                axios.post('/createPublication',
+                JSON.stringify({
+                    'title': titulo, 'description': descrPubl, 'price': precio, 'property_id': response.data.id, 'email_user': username
+                }),
+                {
+                    headers: { 'Content-Type': 'application/json',
+                        "Access-Control-Allow-Origin": "*"
+                         }
+                },
+    
+              ).then((response) => {
+                console.log(response.data)
+                }).catch((error) => {
+                    console.log(error)
+                })
+            }).catch((error) => {
+                console.log(error)
+            })
+            
             
              
             
-            const response_2 = await axios.post('/createPublication',
-            JSON.stringify({
-                'title': titulo, 'description': descrPubl, 'price': precio, 'property_id': response.data.id, 'email_user': username
-            }),
-            {
-                headers: { 'Content-Type': 'application/json',
-                    "Access-Control-Allow-Origin": "*"
-                     }
-            },
-
-          );
 
             //const params = new URLSearchParams();
             //params.append('property_id', id_property)
@@ -175,129 +187,17 @@ const MakePublication = () => {
             } else {
                 setErrMsg('el registro fallo')
             }
-            errRef.current.focus();
-
+            // errRef.current.focus();
+            console.log(err)
             setErrMsg(null)
         }
     }
 
 
     return (
-        // <>
-        //     {success ? (
-        //         <section style={{ backgroundColor: 'grey' }}>
-        //             <h1>Propiedad actualizada con exito!</h1>
-        //             <p>
-        //                 <a href="/">Ir a la pagina principal</a>
-        //                 <br />
-        //                 <a href="/showsMyPublications">Ir a la pagina de publicaciones</a>
-        //             </p>
-        //         </section>
-        //     ) : (
-
-        //         <section style={{ backgroundColor: 'grey' }}>
-        //             <Logo />
-        //             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-        //             <h2>Ingrese los datos de la publicación</h2>
-        //             <form className="custom" onSubmit={handleSubmit}>
-
-        //                 <br />
-        //                 <Link to="/fileLoaderGallery2">Cargar Fotos</Link>
-
-        //                 <br />
-                        
-                       
-
-                    
-
-        //                 <Box sx={{ minWidth: 120 }}>
-        //                     <FormControl fullWidth>
-        //                         <InputLabel id="demo-simple-select-label">Baños</InputLabel>
-        //                         <Select
-        //                             labelId="demo-simple-select-label"
-        //                             id="demo-simple-select"
-        //                             value={banios}
-        //                             label="Baños"
-        //                             onChange={(e) => setBanios(e.target.value)}
-        //                         >
-        //                         {selectionNumbers.map((item) => {
-        //                             return (
-        //                                 <MenuItem value={item}>{item}</MenuItem>
-        //                             )
-        //                         })}
-        //                         </Select>
-        //                     </FormControl>
-        //                 </Box>
-
-        //                 <br />
-
-        //                 <Box sx={{ minWidth: 120 }}>
-        //                     <FormControl fullWidth>
-        //                         <InputLabel id="demo-simple-select-label">Habitaciones</InputLabel>
-        //                         <Select
-        //                             labelId="demo-simple-select-label"
-        //                             id="demo-simple-select"
-        //                             value={habitaciones}
-        //                             label="Habitaciones"
-        //                             onChange={(e) => setHabitaciones(e.target.value)}
-        //                         >
-        //                         {selectionNumbers.map((item) => {
-        //                             return (
-        //                                 <MenuItem value={item}>{item}</MenuItem>
-        //                             )
-        //                         })}
-        //                         </Select>
-        //                     </FormControl>
-        //                 </Box>
-
-        //                 <br />
-
-
-        //                 <Box sx={{ minWidth: 120 }}>
-        //                     <FormControl fullWidth>
-        //                         <InputLabel id="demo-simple-select-label">Personas</InputLabel>
-        //                         <Select
-        //                             labelId="demo-simple-select-label"
-        //                             id="demo-simple-select"
-        //                             value={personas}
-        //                             label="Habitaciones"
-        //                             onChange={(e) => setPersonas(e.target.value)}
-        //                         >
-        //                         {selectionNumbers.map((item) => {
-        //                             return (
-        //                                 <MenuItem value={item}>{item}</MenuItem>
-        //                             )
-        //                         })}
-
-        //                         </Select>
-        //                     </FormControl>
-        //                 </Box>
-
-        //                 <label htmlFor="descrProp">
-        //                     Descripcion:
-
-        //                 </label>
-        //                 <input
-        //                     type="text"
-        //                     id="descrProp"
-        //                     onChange={(e) => setDescrProp(e.target.value)}
-        //                     value={descrProp}
-        //                     required
-
-        //                 />
-
-        //                 <br/>
-
-
-        //                 <button >Crear publicación</button>
-        //             </form>
-        //         </section>
-        //     )}
-        // </>
-        
         <ThemeProvider theme={theme}>
                 {listingInfo ? (
-                                <Stack spacing={3}  direction="column">
+                                <Stack spacing={3}  direction="column" sx={{mt: -20}}>
                                     <Typography variant="h6" gutterBottom component="div" color='#000'>
                                         Datos de la propiedad
                                     </Typography>
@@ -335,48 +235,62 @@ const MakePublication = () => {
                                 </Stack>
 
                 ) : (
-                                <Stack direction="column" spacing={3} >
-                                    <Typography variant="h6" gutterBottom component="div">
-                                        Ingrese los datos de la propiedad
-                                    </Typography>
-                                    <DropDownMenuLocation selected={provincia} setProvincia={setProvincia}/>
-                                    <TextField
+                                <Stack direction="row" spacing={3} >
+                                    <Stack direction="column" spacing={3} >
+                                        <Typography variant="h6" gutterBottom component="div" color='#000'>
+                                            Ingrese los datos de la propiedad
+                                        </Typography>
+                                        <DropDownMenuLocation selected={provincia} setProvincia={setProvincia}/>
+                                        <TextField
 
-                                        id="outlined-basic"
-                                        label="Direccion"
-                                        variant="outlined"
-                                        onChange={(e) => setDireccion(e.target.value)}
-                                        value={direccion}
-                                        required
-                                        
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Localidad"
-                                        variant="outlined"
-                                        onChange={(e) => setLocalidad(e.target.value)}
-                                        value={localidad}
-                                        required
+                                            id="outlined-basic"
+                                            label="Direccion"
+                                            variant="outlined"
+                                            onChange={(e) => setDireccion(e.target.value)}
+                                            value={direccion}
+                                            required
+                                            
+                                        />
+                                        <TextField
+                                            id="outlined-basic"
+                                            label="Localidad"
+                                            variant="outlined"
+                                            onChange={(e) => setLocalidad(e.target.value)}
+                                            value={localidad}
+                                            required
 
-                                    />
-                                    <TextField
-                                        id="outlined-basic"
-                                        label="Pais"
-                                        variant="outlined"
-                                        onChange={(e) => setPais(e.target.value)}
-                                        value={pais}
-                                        required
+                                        />
+                                        <TextField
+                                            id="outlined-basic"
+                                            label="Pais"
+                                            variant="outlined"
+                                            onChange={(e) => setPais(e.target.value)}
+                                            value={pais}
+                                            required
 
-                                    />
-                                    <Link to="/fileLoaderGallery2" sx={{textDecoration: 'none'}}>
-                                        <AddPhotoAlternateIcon />
-                                    </Link>
-                                    <Button variant="contained" sx={{position: 'absolute', right:20, bottom: 20}} onClick={handleCreateClick}>
-                                        Crear Propiedad
-                                    </Button>
-                                    <Button variant="contained" sx={{position: 'absolute', left:20, bottom: 20}} onClick={handleBackClick}>
-                                        Datos de publicación
-                                    </Button>                                    
+                                        />
+                                        <AddImagesModal setOpen={setOpen} handleOpen={handleOpen} open={open}/>
+                                    </Stack>
+                                    <Stack direction="column" spacing={3} >
+                                        <Typography variant="h6" gutterBottom component="div" color='#000'>
+                                            Ingrese los datos de la propiedad
+                                        </Typography>
+                                        <DropDownMenuMakePublication values={[0,1,2,3,4,5,6,7]} name={'Baños'} setFunction={setBanios}/>
+                                        <DropDownMenuMakePublication values={[0,1,2,3,4,5,6,7]} name={'Habitaciones'} setFunction={setHabitaciones}/>
+                                        <DropDownMenuMakePublication values={[0,1,2,3,4,5,6,7]} name={'Personas'} setFunction={setPersonas}/>
+                                        <TextField 
+                                            variant="outlined"
+                                            onChange={(e)=>setDescrProp(e.target.value)}
+                                            label="Descripcion"
+                                            value={descrProp}
+                                        />
+                                        <Button variant="contained" sx={{position: 'absolute', right:20, bottom: 20}} onClick={handleSubmit}>
+                                            Crear Propiedad
+                                        </Button>
+                                        <Button variant="contained" sx={{position: 'absolute', left:20, bottom: 20}} onClick={handleBackClick}>
+                                            Datos de publicación
+                                        </Button>                                    
+                                    </Stack>
                                 </Stack>
 
                 )}               

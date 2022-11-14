@@ -5,8 +5,8 @@ function DropDownMenuLocation(props) {
   const [selected, setSelected] = useState(props.selected ? props.selected : '');
 
   const selectionChangeHandler = (event) => {
-    props.setProvincia(event.target.value);
     setSelected(event.target.value);
+    props.setProvincia(event.target.value);
   };
 
   return (

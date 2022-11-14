@@ -12,7 +12,23 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import ImageUploading from "react-images-uploading";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { Modal } from '@mui/material';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
 export class FileLoaderGallery2 extends Component {
    
@@ -25,6 +41,8 @@ export class FileLoaderGallery2 extends Component {
     
     email_user = window.localStorage.getItem("username");
     
+    //browserHistory = ReactRouter.browserHistory;
+    
     constructor(props) {
         super(props)
             
@@ -35,6 +53,13 @@ export class FileLoaderGallery2 extends Component {
         
         this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this)
         this.uploadFiles = this.uploadFiles.bind(this)
+        this.handleClose = () => {
+            props.setOpen(false);
+        }
+        this.handleUpload = (e) => {
+            this.uploadFiles(e)
+            this.handleClose()
+        }
     }
   
    
@@ -70,10 +95,10 @@ export class FileLoaderGallery2 extends Component {
     }
     
     uploadMultipleFiles(e) {
-        
+        console.log(this.fileObj)
         this.fileObj.push(e.target.files)
         for (let i = 0; i < this.fileObj[0].length; i++) {
-
+            console.log(this.fileObj[0][i])
             this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]))
         }
         this.setState({ file: this.fileArray })
@@ -91,24 +116,35 @@ export class FileLoaderGallery2 extends Component {
    
     render() { 
         return (
-                <section style={{ backgroundColor: 'grey' }}>
-                  <Logo/>
-                  
-                  <div className="form-group multi-preview">
-                      {(this.fileArray || []).map(url => (
-                          <img src={url} alt='preview' height="100"/>
-                      ))}
-                  </div>
-                  
-                  <div className="form-group">
-                        <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
-                  </div>
-                  
-                  <button onClick={this.uploadFiles}>Cargar fotos</button>
-                  
-                  <GoBack/>
-                    
-                </section>
+            <Stack direction="column" >
+                <Modal
+                    open={this.props.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <Stack direction="column" spacing={2} sx={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                            <div className="form-group multi-preview">
+                                {(this.fileArray || []).map(url => (
+                                    <img src={url} alt='preview' height="100"/>
+                                ))}
+                            </div>
+                            
+                            <div className="form-group">
+                                <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
+                            </div>
+                            
+                            <button onClick={this.handleUpload}>Cargar fotos</button>
+                        </Stack>
+                    </Box>  
+                </Modal>   
+                <Button onClick={this.props.handleOpen}>
+                    <AddPhotoAlternateIcon />
+                    Cargar Imagenes
+                </Button>
+
+            </Stack>
         )
     }
 }
