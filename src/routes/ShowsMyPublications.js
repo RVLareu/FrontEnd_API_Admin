@@ -44,7 +44,7 @@ const ShowsMyPublications = () => {
   return (
     <>
     { (publications && publications.length > 0) ? 
-      <Box sx={{display:'flex',flexWrap: 'wrap' }}>
+      <Box sx={{display:'flex',flexWrap: 'wrap', mt:10 }}>
         {publications.map(item => {
           return (
               <CardMyPublication key={item.Publication.id} {...item} username={username} updatePublications={loadPublications} />
