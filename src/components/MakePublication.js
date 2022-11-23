@@ -162,6 +162,7 @@ const MakePublication = () => {
     
               ).then((response) => {
                 console.log(response.data)
+                window.location.href = "/showsMyPublications";
                 }).catch((error) => {
                     console.log(error)
                 })
