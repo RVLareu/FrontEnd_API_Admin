@@ -14,8 +14,14 @@ import { PrecisionManufacturing } from "@mui/icons-material";
 //import { useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
-
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material';
 
 const ViewPublication = (() => {
 
@@ -56,9 +62,28 @@ const ViewPublication = (() => {
     const [habitaciones, setHabitaciones] = useState(parse_properties.rooms);
     const [banios, setBanios] = useState(parse_properties.toilets);
     const [personas, setPersonas] = useState(parse_properties.people);
-
     
     const [images, setImages] = useState([]);
+    const [answer, setAnswer] = useState('');
+    const [ownerOfPublication, setOwnerOfPublication] = useState(true);
+    const [questionId, setQuestionId] = useState(0);
+
+    const handleReply = (e) => {
+      axios.post('/answer/',
+        {
+          'question_id': questionId,
+          'answer': answer
+          }
+          )
+      .then((response) => {
+        console.log(response);
+        getQuestions();
+      })
+      .catch((error) => {
+        console.log(error);
+      });    
+    
+    }
 
     let username = window.localStorage.getItem("username")
 
@@ -99,81 +124,172 @@ const ViewPublication = (() => {
       else
         return false;
       })  */
+  
+  const [question, setQuestion] = useState('');
+  const [questions, setQuestions] = useState([]);
+  const handleAddQuestion = () => {
+    // check if question not empty
+    if (question.trim() === '') {
+      setErrMsg('Question cannot be empty');
+      return;
+    }
+    axios.post('/question/', {
+      publication_id: id_publication,
+      question: question,
+      user_id: 1,
+    })
+    .then((response) => {
+      console.log(response);
+      getQuestions()
+    })
+    .catch((error) => {
+      console.log(error);
 
+    });
+  }
+
+  const getQuestions = () => {
+    axios.get(`/question/${id_publication}`)
+    .then((response) => {
+      console.log(response);
+      setQuestions(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+
+  const theme = createTheme({
+    palette: {
+        primary: {
+          main: '#dc9c13',
+        },
+        secondary:{
+            main: '#e9bc65',
+        } 
+      },
+}); 
 
   useEffect(() => {
     loadImages();
+    getQuestions();
     }, []);
 
 
-    return (
-                <section style={{ backgroundColor: 'grey' }}>
-                    <Logo />
+    return (    
 
-                    <h2>Datos de la publicación</h2>
+      <ThemeProvider theme={theme}>
+          <Stack direction="column" spacing={2} sx={{ width: '100vw'}}>
+                
+                <Stack spacing={2} direction="row" sx={{flexGrow: 1, justifyContent: 'left', alignItems: 'center',}}>
 
-                    <Typography sx={{ fontSize: 34 }} color="text.secondary" gutterBottom>
-                        {titulo}
-                    </Typography>
+                  <Stack direction="column" spacing={4}>
+                      <Typography sx={{ fontSize: 34, mt:10 }} color="text.primary" gutterBottom variant='h1' >
+                          {titulo}
+                      </Typography>
 
-                    <div className="form-group multi-preview">
-                      {(images || []).map(image => (
-                          <img src={image.link} alt='preview' height="200"/>
-                      ))}
-                    </div>
+                      <div className="form-group multi-preview">
+                        {(images || []).map(image => (
+                            <img src={image.link} alt='preview' height="400"/>
+                        ))}
+                      </div>
+                  </Stack>
+                  
+                  <Stack direction="column" spacing={4} sx={{flex:1, alignItems: 'center', justifyContent: 'right', width: '100%'}}>
+                    <Button variant="contained" onClick={()=>{makeReservation(props)}} 
+                        disabled={false} color="success" sx={{height: 'fit-content', width: 'fit-content'}}>Realizar reserva</Button>
+                        
+                    <Button variant="contained" onClick={()=>{calificar(props)}} 
+                        disabled={true} color="success" sx={{height: 'fit-content', width: 'fit-content'}}>Calificar</Button>
+                    
+                    <Stack direction="column" spacing={4}>
 
-                    <Typography variant="h6" component="div">
-                        {descripcion}
-                    </Typography>
-            
-                    <Typography variant="body2">
-                       $ {precio}
-                    </Typography>
+                      <Typography variant="p1" color='black'>
+                        {banios} baños
+                      </Typography>
 
-                    <Typography variant="body2">
-                      {direccion}
-                    </Typography>
+                      <Typography variant="p1" color='black'>
+                        {habitaciones} habitaciones
+                      </Typography>
 
-                    <Typography variant="body2">
-                       {provincia}
-                    </Typography>
-                       
-                    <Typography variant="body2">
-                       {localidad}
-                    </Typography>
-                       
-                    <Typography variant="body2">
-                       {pais}
-                     </Typography>
-                       
-                     <Typography variant="body2">
-                       {banios} baños
-                     </Typography>
-                       
-                     <Typography variant="body2">
-                       {habitaciones} habitaciones
-                     </Typography>
-                       
-                     <Typography variant="body2">
-                       para {personas} personas
-                     </Typography>
-                       
-                     <Typography variant="body2">
-                       {descripcion}
-                     </Typography>
-                     
-                     <Button variant="contained" onClick={()=>{makeReservation(props)}} 
-                     disabled={false} color="success">Realizar reserva</Button>
-                     
-                     <Button variant="contained" onClick={()=>{calificar(props)}} 
-                     disabled={true} color="success">Calificar</Button>
-                     
-                       
-                     <Button variant="filled" color="primary" 
-                     onClick={() => {window.history.go(-1);return false;}}>Volver</Button>
+                      <Typography variant="p1" color='black'>
+                        para {personas} personas
+                      </Typography>
 
-                </section>
+                    </Stack>                        
+
+                  </Stack>
+
+                </Stack>
+                
+                <Stack direction="column" spacing={4}>
+                  
+                  <Typography var iant="body2" color='black'>
+                  {pais}, {provincia}, {localidad}
+                  </Typography>                    
+                  
+                  <Typography variant="body2" color='black' >
+                    $ {precio}
+                  </Typography>
+
+                  <Typography variant="body2" color='black'>
+                    {direccion}
+                  </Typography>
+
+                </Stack>
+                
+                <Stack spacing={2} direction="row" sx={{width: '100%'}}>
+                    <TextField
+                              sx={{width: '80%', ml: 5}} 
+                              id="outlined-multiline-static"
+                              label="Realiza una pregunta"
+                              multiline
+                              rows={4}
+                              defaultValue="Buenas, tengo una consulta..."
+                              onChange={(e) => setQuestion(e.target.value)}
+                    />
+                    <Button variant="contained" color="success" sx={{height: 'fit-content'}} onClick={handleAddQuestion}>Enviar</Button>
+                </Stack>
+                <List sx={{color: 'black'}}>
+                  {questions.map((question) => (
+                    <ListItem key={question.id} sx={{ml: 5}}>
+                      <Stack sx={{width: '80%'}} spacing={2}>
+                        <ListItemText
+                          primary={question.Question.question}
+                          secondary={question.Question.answer ? question.Question.answer : null}
+                        />
+                        {ownerOfPublication && (question.Question.answer === null) ?
+                        (<>
+                              <TextField 
+                                key={question.Question.id}
+                                multiline 
+                                label="Respuesta"
+                                rows={3}
+                                onChange={(e) => {
+                                  setAnswer(e.target.value)
+                                  setQuestionId(question.Question.id)
+                                }}
+
+                              />
+                              <Button variant="contained" color="success" sx={{height: 'fit-content', width: 'fit-content'}} onClick={handleReply}>Responder</Button> 
+                              </>
+                          )
+                          : !ownerOfPublication ?  (
+                            <ListItemText
+                            secondary={'Sin respuesta'}
+                          />
+                          ) : null
+                        }
+
+                      </Stack>
+                    </ListItem>
+                  ))}
+                </List>
+          </Stack>
+    </ ThemeProvider>
     )
 })
 
 export default ViewPublication
+
