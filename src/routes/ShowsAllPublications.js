@@ -38,7 +38,7 @@ const ShowsAllPublications = () => {
   return (
     <>
     { (publications && publications.length > 0) ? 
-      <Box sx={{display:'flex',flexWrap: 'wrap' }}>
+      <Box sx={{display:'flex',flexWrap: 'wrap', mt: 10 }}>
         {
         publications.map(item => {
           return (
